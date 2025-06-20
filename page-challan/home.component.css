@@ -1,0 +1,164 @@
+/* Form container */
+.grey-container {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+/* Form grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+input, select, textarea {
+  padding: 8px 10px;
+  border: 1px solid #ccc; /* Default grey */
+  border-radius: 4px;
+  font-size: 13px;
+  width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: white;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #4a90e2;  /* Blue on focus */
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  outline: none;
+}
+
+/* Invalid + touched => red */
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+}
+
+/* Valid + touched => green */
+input.ng-valid.ng-touched,
+select.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched {
+  border-color: #27ae60;
+}
+
+/* Date input smaller */
+input[type="date"] {
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+/* Textarea resize */
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Table styling */
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.custom-table thead {
+  background: linear-gradient(135deg, #4a90e2 0%, #2ac6b5 100%);
+}
+
+.custom-table th {
+  color: white;
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  border-right: 1px solid #ddd;
+}
+
+.custom-table th:last-child {
+  border-right: none;
+}
+
+.custom-table td {
+  padding: 8px;
+  font-size: 13px;
+  color: #555;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.custom-table td:last-child {
+  border-right: none;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.custom-table tbody tr:hover {
+  background: #f8f9ff;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #4a90e2 0%, #2ac6b5 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 5px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(42, 198, 181, 0.5),
+              0 0 12px rgba(74, 144, 226, 0.4);
+}
+
+/* Signature block */
+.signature-block {
+  margin-top: 16px;
+}
+
+.signature-block input[type="file"] {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* Summary */
+.summary {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
