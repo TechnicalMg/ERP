@@ -1,0 +1,100 @@
+<h2 class="h2-header">Delivery Challan</h2>
+<div class="grey-container">
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Distributor:</label>
+      <select [(ngModel)]="selectedDistributor" (change)="onDistributorChange()">
+        <option *ngFor="let d of distributors" [value]="d.distributorName">{{ d.distributorName }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>GEM PO Number:</label>
+      <select [(ngModel)]="selectedGemPo" (change)="onPoSelect(selectedGemPo)">
+        <option *ngFor="let po of filteredGemPoList" [value]="po.gemPoNumber">{{ po.gemPoNumber }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Reference No:</label>
+      <input type="text" [value]="getSelectedPo()?.referenceNo || ''" readonly />
+    </div>
+    <div class="form-group">
+      <label>Delivery Start Date:</label>
+      <input type="text" value="{{ consigneeDetails[0]?.deliveryStartDate }}" readonly />
+    </div>
+    <div class="form-group">
+      <label>Delivery End Date:</label>
+      <input type="text" value="{{ consigneeDetails[0]?.deliveryEndDate }}" readonly />
+    </div>
+  </div>
+</div>
+
+<div class="grey-container">
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Challan Number:</label>
+      <input type="text" [(ngModel)]="challanNumber" placeholder="Enter Challan No" />
+    </div>
+    <div class="form-group">
+      <label>Challan Date:</label>
+      <input type="date" [(ngModel)]="challanDate" />
+    </div>
+    <div class="form-group">
+      <label>PO Generated Date:</label>
+      <input type="text" readonly placeholder="23-01-2024..." />
+    </div>
+    <div class="form-group">
+      <label>Vehicle No:</label>
+      <input type="text" [(ngModel)]="vehicleNo" />
+    </div>
+    <div class="form-group">
+      <label>Courier Name:</label>
+      <input type="text" [(ngModel)]="courierName" />
+    </div>
+    <div class="form-group">
+      <label>Courier POD No:</label>
+      <input type="text" [(ngModel)]="courierPOD" />
+    </div>
+    <div class="form-group">
+      <label>Ship To:</label>
+      <textarea rows="2" [(ngModel)]="billToAddress"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="grey-container">
+  <div class="custom-table-container">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>S No.</th>
+          <th>Item Description</th>
+          <th>HSN</th>
+          <th>Qty</th>
+          <th>Box</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredGemPoItems; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.hsnCode }} hsn value</td>
+          <td>{{ item.qty }}</td>
+          <td>{{ item.box }}10</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="summary">
+      <p style="color: black !important;"><strong>Total No. of Boxes:</strong> {{ getTotalBoxes() }}</p>
+      <p style="color: black !important;"><strong>Approximate Value of Goods (Rs):</strong> {{ getApproxValue() }}</p>
+    </div>
+    <div class="signature-block">
+      <label>Receiver Signature with Stamp Upload:</label>
+      <input type="file" (change)="onReceiverSignatureUpload($event)" />
+      <p *ngIf="receiverSignatureFile">Uploaded: {{ receiverSignatureFile.name }}</p>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; margin: 24px 0;">
+  <button (click)="saveData()" class="btn primary">Save</button>
+</div>
