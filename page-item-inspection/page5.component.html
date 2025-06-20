@@ -1,0 +1,106 @@
+<form #inspectionForm="ngForm" (ngSubmit)="onSave()">
+  <h2 class="h2-header">Pre Dispatch Inspection</h2>
+
+  <div class="grey-container">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Distributor:</label>
+        <select [(ngModel)]="formData.distributor" name="distributor" required>
+          <option value="" disabled selected>Select Distributor</option>
+          <option>Distributor 1</option>
+          <option>Distributor 2</option>
+          <option>Distributor 3</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>GEM PO Number:</label>
+        <select [(ngModel)]="formData.gemPoNumber" name="gemPoNumber" required>
+          <option value="" disabled selected>Select GEM PO</option>
+          <option>PO 1</option>
+          <option>PO 2</option>
+          <option>PO 3</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Reference No:</label>
+        <input type="text" [(ngModel)]="formData.referenceNo" name="referenceNo" required />
+      </div>
+    </div>
+  </div>
+
+<div class="grey-container">
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Inspection Person Name:</label>
+      <input type="text" [(ngModel)]="formData.inspectionPerson" name="inspectionPerson" required />
+    </div>
+
+    <div class="form-group">
+      <label>Inspection Type:</label>
+      <select [(ngModel)]="formData.inspectionType" name="inspectionType" required>
+        <option value="" disabled selected>Select Type</option>
+        <option>In Office</option>
+        <option>On Site</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>New Inspection Person:</label>
+      <input type="text" [(ngModel)]="formData.newInspectionPerson" name="newInspectionPerson" />
+    </div>
+
+    <div class="form-group">
+      <label>Designation:</label>
+      <input type="text" [(ngModel)]="formData.designation" name="designation" />
+    </div>
+
+    <div class="form-group">
+      <label>Agency:</label>
+      <input type="text" [(ngModel)]="formData.agency" name="agency" />
+    </div>
+  </div>
+
+  <!-- Checkbox on its own row, left aligned -->
+  <div class="form-group checkbox-left">
+    <input type="checkbox" [(ngModel)]="formData.otherInspectionPerson" name="otherInspectionPerson" />
+    <label>Other Inspection Person</label>
+  </div>
+</div>
+
+
+
+  <div class="grey-container">
+    <h3>Items Inspection</h3>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Sno</th>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Verify <input type="checkbox" [(ngModel)]="formData.verifyAll" name="verifyAll" /></th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit...</td>
+          <td>10</td>
+          <td><input type="checkbox" [(ngModel)]="formData.itemVerify" name="itemVerify" /></td>
+          <td><input type="text" [(ngModel)]="formData.itemRemark" name="itemRemark" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="form-group" style="margin-top: 16px;">
+      <label>General Remark:</label>
+      <textarea rows="2" placeholder="Enter a remark..." [(ngModel)]="formData.generalRemark" name="generalRemark"></textarea>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin: 24px 0;">
+    <button class="btn primary" [disabled]="inspectionForm.invalid">Save</button>
+  </div>
+</form>
