@@ -1,0 +1,115 @@
+<h2 class="h2-header">Purchase Order Confirmation</h2>
+<div class="grey-container">
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Distributor</label>
+      <select [(ngModel)]="selectedDistributor" required>
+        <option value="" disabled selected>Select Distributor</option>
+        <option>Distributor 1</option>
+        <option>Distributor 2</option>
+        <option>Distributor 3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>GEM PO Number</label>
+      <select [(ngModel)]="selectedGemPo" required>
+        <option value="" disabled selected>Select GEM PO</option>
+        <option>PO 1</option>
+        <option>PO 2</option>
+        <option>PO 3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Reference No</label>
+      <input type="text" [(ngModel)]="referenceNo" required>
+    </div>
+
+    <div class="form-group">
+      <label>PO Generated Date</label>
+      <input type="text" placeholder="23-01-2024..." [(ngModel)]="poGeneratedDate" required>
+    </div>
+
+    <div class="form-group">
+      <label>Delivery Start Date</label>
+      <input type="text" [(ngModel)]="deliveryStartDate" required>
+    </div>
+
+    <div class="form-group">
+      <label>Delivery End Date</label>
+      <input type="text" [(ngModel)]="deliveryEndDate" required>
+    </div>
+  </div>
+</div>
+
+
+<div class="grey-container">
+  <div class="custom-table-container">
+    <h3>Items EDD (Expected Delivery Dates)</h3>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Select</th>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>EDD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredGemPoItems; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td><input type="checkbox" [(ngModel)]="item.checked" /></td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.qty }}</td>
+          <td><input type="date" [(ngModel)]="item.eddDate" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="form-grid" style="margin-top: 16px;">
+      <div class="form-group">
+        <label>Set Expected Delivery Date for Items</label>
+        <input type="date" 
+       [(ngModel)]="yourDateField"
+       (focus)="openCalendar($event)" 
+       required>
+
+      </div>
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <div>
+          <button type="button" class="btn primary">Apply to All</button> 
+          <button type="button" class="btn primary" >Apply to Selected</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; margin: 24px 0;">
+  <button class="btn primary">Save</button>
+</div>
+
+<div class="saved-items">
+  <h3>Saved Delivery Entries</h3>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>EDD Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of savedEntries; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ entry.itemName }}</td>
+        <td>{{ entry.quantity }}</td>
+        <td>{{ entry.eddDate | date: 'mediumDate' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
