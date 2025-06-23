@@ -1,0 +1,54 @@
+<div class="dist-container">
+  <h2 class="h2-header">Assign Roles</h2>
+
+  <div class="manage-assignments-card">
+    <div class="user-select-section">
+      <label>Select User:</label>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Select User</mat-label>
+        <input type="text"
+               matInput
+               placeholder="Search users..."
+               [matAutocomplete]="auto"
+               [(ngModel)]="userFilter"
+               (input)="filterUsers()">
+
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onUserSelect($event.option.value)">
+          <mat-option *ngFor="let user of filteredUsers" [value]="user.userName">
+            {{ user.userName }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="roles-section" *ngIf="selectedUserId">
+      <h4 class="subtitle">Assigned Roles</h4>
+
+      <div class="menu-container">
+        <div class="menu-item">
+          <label><input type="checkbox" /> Menu 1 (Select All)</label>
+          <div class="options-container">
+            <label><input type="checkbox" /> Option 1</label>
+            <label><input type="checkbox" /> Option 2</label>
+            <label><input type="checkbox" /> Option 3</label>
+            <label><input type="checkbox" /> Option 4</label>
+            <label><input type="checkbox" /> Option 5</label>
+            <label><input type="checkbox" /> Option 6</label>
+            <label><input type="checkbox" /> Option 7</label>
+            <label><input type="checkbox" /> Option 8</label>
+            <label><input type="checkbox" /> Option 9</label>
+            <label><input type="checkbox" /> Option 10</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons-container">
+        <button class="action-btn app-button">Save Roles</button>
+        <button class="action-btn delete">Delete All</button>
+        <button class="action-btn app-button">Select All</button>
+        <button class="action-btn app-button">Deselect All</button>
+      </div>
+    </div>
+  </div>
+</div>
