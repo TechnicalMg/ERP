@@ -1,0 +1,53 @@
+
+
+<div class="dist-container">
+  <h2 class="h2-header">Assign Roles </h2>
+   <div class="manage-assignments-card">
+    
+  
+    <div class="user-select-section">
+      <label for="userSelect">Select User:</label>
+
+      <ng-select
+  [items]="users"
+  bindLabel="userName"
+  bindValue="id"
+  placeholder="Select a user"
+  [(ngModel)]="selectedUserId"
+  (change)="onUserSelect()"
+  [searchable]="true"
+  [clearable]="true">
+</ng-select>
+
+      <!-- <select id="userSelect" [(ngModel)]="selectedUserId" (change)="onUserSelect()">
+        <option value="">-- Select --</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.userName }}
+        </option>
+      </select> -->
+    </div>
+  
+    <div *ngIf="selectedUserId" class="roles-section">
+      <h4 class="subtitle">Assigned Roles</h4>
+  
+      <div class="checkbox-container">
+        <div class="checkbox-item" *ngFor="let menu of userMenus">
+          <label>
+            <input type="checkbox"
+                   [checked]="isChecked(menu.id)"
+                   (change)="toggleMenu(menu.id)" />
+            {{ menu.menuName }}
+          </label>
+        </div>
+      </div>
+  
+      <div class="buttons-container">
+        <button class="action-btn" (click)="updateAssignments()">Save Roles</button>
+        <button class="action-btn delete-btn" (click)="deleteAllAssignments()">Delete All</button>
+        <button class="action-btn" (click)="selectAllMenus()">Select All</button>
+        <button class="action-btn" (click)="deselectAllMenus()">Deselect All</button>
+      </div>
+    </div>
+  </div>
+</div>
+  

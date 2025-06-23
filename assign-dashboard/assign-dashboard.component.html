@@ -1,0 +1,73 @@
+<!-- <div class="container p-4 bg-white rounded shadow">
+  <h2 class="mb-4">Assign Dashboard Menus to User</h2>
+
+
+  <div class="form-group mb-3">
+    <label for="userSelect"><strong>Select User:</strong></label>
+    <select id="userSelect" class="form-control" [(ngModel)]="selectedUserId">
+      <option value="" disabled>Select a user</option>
+      <option *ngFor="let user of users" [value]="user.id">{{ user.userName }}</option>
+    </select>
+  </div>
+
+   <div class="menu-actions">
+    <button (click)="checkAll()">Check All</button>
+    <button (click)="uncheckAll()">Uncheck All</button>
+    <button (click)="assign()">Update Assignment</button>
+    <button (click)="deleteAssignments()">Delete Assignment</button>
+  </div>
+
+  <div class="form-group">
+    <label><strong>Select Dashboard Menus:</strong></label>
+    <div *ngFor="let menu of menus" class="form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        [id]="'menu' + menu.id"
+        [value]="menu.id"
+        (change)="toggleDashboardSelection(menu.id)"
+        [checked]="selectedDashboardMenuIds.includes(menu.id)"
+      />
+      <label class="form-check-label" [for]="'menu' + menu.id">{{ menu.menu_item_name }}</label>
+    </div>
+  </div>
+
+  <button (click)="assign()" class="btn btn-primary mt-3">Assign Menus</button>
+</div>
+ -->
+
+
+
+<!-- <div class="container p-4 bg-white rounded shadow"> -->
+<div class="dist-container">
+  <h2 class="mb-4">Assign Dashboard Menus to User Menus</h2>
+
+  
+  <div *ngFor="let userMenu of userMenus" class="mb-4 border rounded p-3">
+      <p></p>
+    <div class="grey-container">
+    <h5 style="color: black;">
+      <mat-icon style="vertical-align: middle;">person</mat-icon>
+      {{ userMenu.menuName }}
+    </h5>
+
+    <div class="form-group">
+      <label><strong>Assign Dashboard Menus:</strong></label>
+      <div *ngFor="let dashboard of menus" class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          [id]="'checkbox-' + userMenu.id + '-' + dashboard.id"
+          [checked]="isDashboardSelected(userMenu.id, dashboard.id)"
+          (change)="toggleDashboardForUserMenu(userMenu.id, dashboard.id)"
+        />
+        <label class="form-check-label" [for]="'checkbox-' + userMenu.id + '-' + dashboard.id">
+          {{ dashboard.menu_item_name }}
+        </label>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <button class="btn btn-primary mt-3" (click)="saveAssignments()">Save All Assignments</button>
+</div>

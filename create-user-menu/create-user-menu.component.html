@@ -1,0 +1,49 @@
+
+   <div class="dist-container">
+     <h2 class="h2-header" >Roles Creation</h2>
+   <div class="menu-form-card">
+    <!-- <h3 class="title" >Create User Menu</h3> -->
+    <!-- <h1 class="title" >Roles Creation</h1> -->
+   
+  
+    <!-- <div class="form-section"> -->
+      <div class="form-group grey-container"><label for="user_menu">Enter Role Name</label><span class="required">*</span>
+      <input [(ngModel)]="userMenuText" placeholder="Enter role" style="padding: 0.6rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease;" (keydown.enter)="saveUserMenu()"/>
+      <button (click)="saveUserMenu()">Save</button>
+    </div>
+    <!-- </div> -->
+  
+    <!-- <h4 class="subtitle">All Menus</h4> -->
+    <!-- sssssasd -->
+    <!-- <div class="table-container grey-container custom-table-container"> -->
+       <!-- <div class="scrolling-container" > -->
+    <div class="custom-table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>S No.</th>
+            <th>Role Name</th>
+            <th>Option</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let menu of userMenus; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ menu.menuName }}</td>
+            <td>
+              <button (click)="deleteUserMenu(menu.id)" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 4px;">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- </div> -->
+  </div>
+   </div>
+  
