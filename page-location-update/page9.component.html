@@ -1,0 +1,87 @@
+<div class="form-container">
+  <h2>Location update</h2>
+  <!-- PO NO dropdown -->
+  <div class="form-group">
+    <label for="poNo">Received PO No</label>
+    <select id="poNo" [(ngModel)]="selectedPoNo">
+      <option value="">Select PO No</option>
+      <option *ngFor="let po of poOptions" [value]="po">{{ po }}</option>
+    </select>
+  </div>
+
+  <!-- Delivery Challan dropdown -->
+  <div class="form-group">
+    <label for="challan">Delivery Challan</label>
+    <select id="challan" [(ngModel)]="selectedChallan" (change)="onChallanChange()">
+      <option value="">Select Delivery Challan</option>
+      <option *ngFor="let challan of challanOptions" [value]="challan">{{ challan }}</option>
+    </select>
+  </div>
+
+  <!-- Container that appears when challan is selected -->
+  <div *ngIf="showContainer" class="challan-container">
+
+    <!-- Table -->
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Sr No</th>
+          <th>Item</th>
+          <th>Item Sr No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tableData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.serial }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Addresses section -->
+    <div class="address-section">
+      
+      <!-- Delivery Address -->
+      <div class="address-box">
+        <h4>Delivery Address</h4>
+
+        <!-- Static Delivery Address -->
+        <div class="static-address">
+            {{ deliveryAddress.line1 }}<br>
+            {{ deliveryAddress.line2 }}<br>
+            {{ deliveryAddress.district }}, {{ deliveryAddress.state }} - {{ deliveryAddress.pin }}
+        </div>
+
+        <!-- Checkbox below the address -->
+        <label class="not-same-checkbox">
+            <input type="checkbox" [(ngModel)]="notSameAddress" /> Not same as Installation Address
+        </label>
+        </div>
+
+        <div class="address-box">
+        <h4>Installation Address</h4>
+
+        <input type="text" placeholder="Address Line 1" [(ngModel)]="installationAddress.line1" 
+            [readonly]="!notSameAddress" />
+        <input type="text" placeholder="Address Line 2" [(ngModel)]="installationAddress.line2" 
+            [readonly]="!notSameAddress" />
+        <select [(ngModel)]="installationAddress.state" [disabled]="!notSameAddress">
+            <option value="">Select State</option>
+            <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+        </select>
+        <select [(ngModel)]="installationAddress.district" [disabled]="!notSameAddress">
+            <option value="">Select District</option>
+            <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+        </select>
+        <input type="text" placeholder="Pin Code" [(ngModel)]="installationAddress.pin" 
+            [readonly]="!notSameAddress" />
+        </div>
+
+
+    </div>
+
+    <button class="app-button">Save</button>
+  </div>
+
+</div>

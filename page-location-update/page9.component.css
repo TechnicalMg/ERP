@@ -1,0 +1,177 @@
+.form-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #4a5568;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+.challan-container {
+  margin-top: 30px;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.items-table th, 
+.items-table td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.items-table thead tr {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.items-table th {
+  color: white;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.items-table tr:last-child td {
+  border-bottom: none;
+}
+
+.items-table tbody tr:hover {
+  background: #edf2f7;
+}
+
+.address-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.address-box {
+  flex: 1 1 45%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.address-box h4 {
+  margin-bottom: 10px;
+  color: #2d3748;
+}
+
+.address-box label {
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 8px;
+  color: #4a5568;
+}
+
+.address-box input,
+.address-box select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.address-box input:focus,
+.address-box select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+/* Specifically for the delivery address checkbox */
+/* Specifically style the checkbox + label inline */
+.address-box .not-same-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 10px;
+  font-size: 0.85rem;
+  color: #4a5568;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.address-box .not-same-checkbox input[type="checkbox"] {
+  margin: 0;
+  transform: scale(1.1); /* optional: slightly larger checkbox */
+}
+
+
+.app-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 30px;
+  /* background: linear-gradient(135deg, #48bb78, #38a169); */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.app-button:hover {
+  /* background: linear-gradient(135deg, #38a169, #2f855a); */
+  transform: translateY(-2px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .address-section {
+    flex-direction: column;
+  }
+
+  .address-box {
+    flex: 1 1 100%;
+  }
+}
