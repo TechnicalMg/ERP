@@ -1,0 +1,166 @@
+<div class="dist-container">
+  <h2 class="h2-header">Purchase Order Form</h2>
+
+  <div class="loader-overlay" style="display: none;">
+    <div class="spinner"></div>
+    <p>Uploading and processing PDF...</p>
+  </div>
+
+  <div class="upload-section" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+    <label>Order Type</label>
+    <select required>
+      <option>Product</option>
+      <option>AMC</option>
+      <option>Product+AMC</option>
+      <option>FMS</option>
+    </select>
+
+    <label for="fileUpload" style="font-size: 0.9rem; font-weight: 500; color: black;">Upload PDF:</label>
+    <input type="file" id="fileUpload" accept=".pdf" style="font-size: 0.85rem; padding: 4px 6px; border: 1px solid #ccc; border-radius: 5px;" />
+    <button class="app-button" style="padding: 6px 12px; font-size: 0.85rem; border: none; border-radius: 5px; background-color: #4f94dd; color: white; cursor: pointer;">Upload PDF</button>
+  </div>
+
+  <form>
+    <div class="grey-container" style="max-width: 98%;">
+      <div class="form-grid" style="max-width: 98%;">
+
+        <!-- Purchase Order Info -->
+        <div class="form-box">
+          <h3>Purchase Order Info</h3>
+          <div class="form-group1"><label>PO Number</label><input></div>
+          <div class="form-group1"><label>PO Date</label><input></div>
+          <div class="form-group1"><label>Bid Number</label><input></div>
+        </div>
+
+        <!-- Organisation Details -->
+        <div class="form-box">
+          <h3>Organisation Details</h3>
+          <div class="form-group1"><label>Organisation Type</label><input></div>
+          <div class="form-group1"><label>Organisation Ministry</label><input></div>
+          <div class="form-group1"><label>Organisation Department</label><input></div>
+          <div class="form-group1"><label>Organisation Name</label><input></div>
+        </div>
+
+        <!-- Buyer Details -->
+        <div class="form-box">
+          <h3>Buyer Details</h3>
+          <div class="form-group1"><label>Buyer Designation</label><input></div>
+          <div class="form-group1"><label>Buyer Contact</label><input></div>
+          <div class="form-group1"><label>Buyer Email</label><input></div>
+          <div class="form-group1"><label>Buyer GSTIN</label><input></div>
+          <div class="form-group1"><label>Buyer Address</label><textarea></textarea></div>
+        </div>
+
+        <!-- Financial Approval -->
+        <div class="form-box">
+          <h3>Financial Approval Details</h3>
+          <div class="form-group1"><label>IFD Concurrence</label><input></div>
+          <div class="form-group1"><label>Designation Admin Approval</label><input></div>
+          <div class="form-group1"><label>Designation Final Approval</label><input></div>
+        </div>
+
+        <!-- Paying Authority -->
+        <div class="form-box">
+          <h3>Paying Authority Details</h3>
+          <div class="form-group1"><label>Paying Role</label><input></div>
+          <div class="form-group1"><label>Paying Mode</label><input></div>
+          <div class="form-group1"><label>Paying Designation</label><input></div>
+          <div class="form-group1"><label>Paying Email</label><input></div>
+          <div class="form-group1"><label>Paying GSTIN</label><input></div>
+          <div class="form-group1"><label>Paying Address</label><textarea></textarea></div>
+        </div>
+
+        <!-- MSME / MSE -->
+        <div class="form-box">
+          <h3>MSME/MSE Details</h3>
+          <div class="form-group1"><label>MII Status</label><input readonly value="N/A"></div>
+          <div class="form-group1"><label>MSME Verified</label><input readonly value="N/A"></div>
+          <div class="form-group1"><label>MSME Reg. No.</label><input readonly value="N/A"></div>
+          <div class="form-group1"><label>Social Category</label><input readonly value="N/A"></div>
+          <div class="form-group1"><label>Gender</label><input readonly value="N/A"></div>
+          <div class="form-group1"><label>GSTIN</label><input readonly value="N/A"></div>
+        </div>
+
+        <!-- RFP Upload -->
+        <div class="form-box">
+          <h3>RFP Upload</h3>
+          <div class="form-group1">
+            <label>RFP No.</label><input>
+          </div>
+          <div class="form-group1">
+            <label>RFP Date</label><input type="date">
+          </div>
+          <div class="form-group1">
+            <label>Upload RFP</label>
+            <input type="file" accept=".pdf">
+            <button class="upload app-button">Upload</button>
+            <p>Saved path</p>
+          </div>
+        </div>
+
+        <!-- BID Upload -->
+        <div class="form-box">
+          <h3>BID Upload</h3>
+          <div class="form-group1"><label>Bid No.</label><input></div>
+          <div class="form-group1"><label>Bid Date</label><input type="date"></div>
+          <div class="form-group1">
+            <label>Upload Bid</label>
+            <input type="file" accept=".pdf">
+            <button class="upload app-button">Upload</button>
+            <p>Saved path</p>
+          </div>
+        </div>
+
+      </div>
+      <div style="margin-left: 50%;"><button class="btn success app-button">Save</button></div>
+    </div>
+  </form>
+
+  <!-- Product Details Table (static example) -->
+  <div class="table-section">
+    <div class="grey-container" style="max-width: 98%;">
+      <div class="custom-table-container" style="max-width: 98%;">
+        <h3>Product Details</h3>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <th>Product Name</th>
+              <th>Brand</th>
+              <th>Brand Type</th>
+              <th>Catalogue Status</th>
+              <th>Selling AS</th>
+              <th>Category Name & Quadrant</th>
+              <th>Model</th>
+              <th>HSN Code</th>
+              <th>Order Quantity</th>
+              <th>Unit</th>
+              <th>Unit Price</th>
+              <th>Tax Bifurcation</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Sample Product</td>
+              <td>Brand A</td>
+              <td>Type X</td>
+              <td>Available</td>
+              <td>Retail</td>
+              <td>Cat-1 / Q1</td>
+              <td>Model 123</td>
+              <td>HSN001</td>
+              <td>10</td>
+              <td>pcs</td>
+              <td>1000</td>
+              <td>NA</td>
+              <td>10000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
