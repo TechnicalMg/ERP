@@ -1,0 +1,50 @@
+<div class="dist-container">
+  <h2>Assign Dashboard Menus</h2>
+
+  <div class="menus-grid">
+    <div class="menu-card" *ngFor="let menu of menus; let i = index">
+      
+      <!-- Menu header -->
+      <div class="menu-header" (click)="toggleDropdown(i)">
+        <span>{{ menu.menuName }}</span>
+        <span class="arrow">{{ menu.open ? '▲' : '▼' }}</span>
+      </div>
+
+      <!-- Options ONLY show when open -->
+      <ng-container *ngIf="menu.open">
+        <div class="menu-options">
+          <label class="option select-all">
+            <input
+              type="checkbox"
+              [checked]="menu.selectAll"
+              (change)="toggleSelectAll(i, $any($event.target).checked)"
+            />
+            Select All
+          </label>
+
+          <div class="option-list">
+            <label class="option" *ngFor="let opt of menu.options">
+              <input
+                type="checkbox"
+                [(ngModel)]="opt.checked"
+                (change)="onOptionChange(i)"
+              />
+              {{ opt.name }}
+            </label>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+
+  <!-- Apply button outside menus-grid - always visible, disabled when no selections -->
+  <button 
+    class="app-button" 
+    [disabled]="!hasAnySelections()"
+    (click)="applyAllSelections()"
+  >
+    Apply All Changes
+  </button>
+
+</div>

@@ -1,0 +1,336 @@
+/* Dashboard Container */
+.dist-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dist-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menus Grid Layout */
+.menus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* Remove the wrapper since we don't need it anymore */
+
+/* Menu Card Styles */
+.menu-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Menu Header Styles */
+.menu-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.menu-header:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.menu-header:active {
+  transform: scale(0.98);
+}
+
+.menu-header .arrow {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+
+/* Menu Options Container */
+.menu-options {
+  padding: 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Select All Option */
+.select-all {
+  background: #edf2f7;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  transition: all 0.2s ease;
+}
+
+.select-all:hover {
+  background: #e2e8f0;
+  border-color: #a0aec0;
+}
+
+/* Option Styles */
+.option {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: #4a5568;
+  position: relative;
+}
+
+.option:hover {
+  background: #edf2f7;
+  color: #2d3748;
+}
+
+.option:last-child {
+  margin-bottom: 0;
+}
+
+/* Option List Container */
+.option-list {
+  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.option-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.option-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.option-list::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}
+
+.option-list::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* Custom Checkbox Styles - Override global input styles */
+.option input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e0;
+  border-radius: 4px;
+  margin-right: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  padding: 0; /* Override global padding */
+  box-sizing: border-box;
+}
+
+.option input[type="checkbox"]:hover {
+  border-color: #667eea;
+  box-shadow: none; /* Override global box-shadow */
+}
+
+.option input[type="checkbox"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); /* Match global focus but with brand color */
+  outline: none;
+}
+
+.option input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+}
+
+.option input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Apply Button Styles - Uses global app-button class */
+.app-button {
+  width: 100%;
+  max-width: 300px;
+  margin: 30px auto 0 auto;
+  display: block;
+}
+
+/* Disabled state for app-button */
+.app-button:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Enabled state for app-button */
+.app-button:not(:disabled) {
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dist-container {
+    padding: 15px;
+  }
+  
+  .dist-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .menus-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .menu-header {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+  
+  .menu-options {
+    padding: 16px;
+  }
+  
+  .app-button {
+    max-width: 280px;
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dist-container {
+    padding: 12px;
+  }
+  
+  .menu-header {
+    padding: 12px 14px;
+  }
+  
+  .menu-options {
+    padding: 14px;
+  }
+  
+  .option {
+    padding: 8px 10px;
+  }
+  
+  .app-button {
+    max-width: 260px;
+    margin-top: 20px;
+  }
+}
+
+/* Loading States */
+.menu-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.menu-card.loading .menu-header {
+  background: linear-gradient(135deg, #a0aec0 0%, #2c3e50 100%);
+}
+
+/* Success Animation */
+.menu-card.success {
+  animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* Focus Styles for Accessibility */
+.menu-header:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.option:focus-within {
+  background: #edf2f7;
+  outline: 1px solid #667eea;
+  outline-offset: 1px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .dist-container h2 {
+    color: #f7fafc;
+  }
+  
+  .menu-card {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .menu-options {
+    background: #1a202c;
+    border-color: #4a5568;
+  }
+  
+  .select-all {
+    background: #4a5568;
+    border-color: #718096;
+    color: #e2e8f0;
+  }
+  
+  .option {
+    color: #cbd5e0;
+  }
+  
+  .option:hover {
+    background: #4a5568;
+    color: #f7fafc;
+  }
+}
