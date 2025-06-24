@@ -1,0 +1,532 @@
+
+<!-- 5th new code -->
+
+<!-- Loader Overlay -->
+<!-- <div class="loader-overlay" *ngIf="isLoading">
+  <div class="spinner"></div>
+  <p>Uploading and processing PDF...</p>
+</div> -->
+<div class="dist-container">
+  <h2 class="h2-header" >{{ headerText }}</h2>
+
+  <!-- Loader Overlay -->
+  <div class="loader-overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Uploading and processing PDF...</p>
+  </div>
+
+  <div class="upload-section" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+    
+    <mat-form-field appearance="fill">
+  <mat-label>Order Type</mat-label>
+  <mat-select [(ngModel)]="selectedOrderType" name="orderType" required>
+    <mat-option *ngFor="let type of orderTypes" [value]="type">
+      {{ type }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+   
+   
+   
+    <label for="fileUpload" style="font-size: 0.9rem; font-weight: 500; color: black;">Upload PDF:</label>
+    <input 
+      type="file" 
+      id="fileUpload" 
+      (change)="onFileSelected($event)" 
+      accept=".pdf" 
+      #fileUpload 
+      style="font-size: 0.85rem; padding: 4px 6px; border: 1px solid #ccc; border-radius: 5px;"
+    />
+    <button 
+      (click)="uploadFile()" 
+      style="
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        border: none;
+        border-radius: 5px;
+        background-color: #4f94dd; 
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      "
+    >
+      Upload PDF
+    </button>
+  </div>
+
+  <!-- <button (click)="printConsignee()">Print Consignee</button> -->
+
+
+
+
+
+  <!-- Data Form Section -->
+  <div class="form-section">
+    <form>
+      <div class="grey-container" style="max-width: 98%;">
+        <div class="form-grid" style="max-width: 98%;">
+      <div class="form-box">
+        <h3>Purchase Order Info</h3>
+        <div class="form-group1">
+          <label class="po-info">PO Number</label>
+          <input [(ngModel)]="poData.poNumber" name="poNumber" >
+        </div>
+        <div class="form-group1">
+          <label class="po-info">PO Date</label>
+          <input type="text" [(ngModel)]="poData.poDate" name="poDate">
+        </div>
+        <div class="form-group1">
+          <label class="po-info">Bid Number</label>
+          <input [(ngModel)]="poData.bidNumber" name="bidNumber">
+        </div>
+      </div>
+
+      <div class="form-box">
+        <h3>Organisation Details</h3>
+        <div class="form-group1">
+          <label class="org-details">Organisation Type</label>
+          <input [(ngModel)]="poData.organisationType" name="organisationType">
+        </div>
+        <div class="form-group1">
+          <label class="org-details">Organisation Ministry</label>
+          <input [(ngModel)]="poData.organisationMinistry" name="organisationMinistry">
+        </div>
+        <div class="form-group1">
+          <label class="org-details">Organisation Department</label>
+          <input [(ngModel)]="poData.organisationDepartment" name="organisationDepartment">
+        </div>
+        <div class="form-group1">
+          <label class="org-details">Organisation Name</label>
+          <input [(ngModel)]="poData.organisationName" name="organisationName">
+        </div>
+      </div>
+<!-- </div>
+<div class="grey-container"> -->
+      <div class="form-box">
+        <h3>Buyer Details</h3>
+        <div class="form-group1">
+          <label class="buyer-details">Buyer Designation</label>
+          <input [(ngModel)]="poData.buyerDesg" name="buyerDesg">
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">Buyer Contact</label>
+          <input [(ngModel)]="poData.buyerContact" name="buyerContact">
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">Buyer Email</label>
+          <input [(ngModel)]="poData.buyerEmail" name="buyerEmail">
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">Buyer GSTIN</label>
+          <input [(ngModel)]="poData.buyerGstin" name="buyerGstin">
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">Buyer Address</label>
+          <textarea [(ngModel)]="poData.buyerAddress" name="buyerAddress"></textarea>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <h3>Financial Approval Details</h3>
+        <div class="form-group1">
+          <label class="finance-details">IFD Concurrence</label>
+          <input [(ngModel)]="poData.ifdConcurrence" name="ifdConcurrence">
+        </div>
+        <div class="form-group1">
+          <label class="finance-details">Designation Admin Approval</label>
+          <input [(ngModel)]="poData.desgAdminApproval" name="desgAdminApproval">
+        </div>
+        <div class="form-group1">
+          <label class="finance-details">Designation Final Approval</label>
+          <input [(ngModel)]="poData.desgFinalApproval" name="desgFinalApproval">
+        </div>
+      </div>
+
+      <div class="form-box">
+        <h3>Paying Authority Details</h3>
+        <div class="form-group1">
+          <label class="paying-details">Paying Role</label>
+          <input [(ngModel)]="poData.payingRole" name="payingRole">
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Paying Mode</label>
+          <input [(ngModel)]="poData.payingMode" name="payingMode">
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Paying Designation</label>
+          <input [(ngModel)]="poData.payingDesg" name="payingDesg">
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Paying Email</label>
+          <input [(ngModel)]="poData.payingEmail" name="payingEmail">
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Paying GSTIN</label>
+          <input [(ngModel)]="poData.payingGstin" name="payingGstin">
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Paying Address</label>
+          <textarea [(ngModel)]="poData.payingAddress" name="payingAddress"></textarea>
+        </div>
+      </div>
+<div class="form-box">
+      <h3>MSME/MSE Details</h3>
+        <div class="form-group1">
+          <label class="msme-details">MII Status</label>
+          <input type="text" [value]="poData.miiStatus" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="msme-details">MSME Verified</label>
+          <input type="text" [value]="poData.msmeVerified" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="msme-details">MSME Reg. No.</label>
+          <input type="text" [value]="poData.msmeRegistrationNumber" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Social Category</label>
+          <input type="text" [value]="poData.mseSocialCategory" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="msme-details">Gender</label>
+          <input type="text" [value]="poData.mseGender" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="msme-details">GSTIN</label>
+          <input type="text" [value]="poData.mseGstin" readonly />
+        </div>
+      <!-- </div> -->
+    </div>
+
+
+
+
+      <div class="form-box">
+        <h3>RFP Upload</h3>
+        <div class="form-group1">
+          <label class="rfp-details">RFP No.</label>
+          <input type="text" [(ngModel)]="poData.rfpNo" name="rfp_no">
+        </div>
+        <div class="form-group1">
+          <label class="rfp-details">RFP Date</label>
+          <input type="date" [(ngModel)]="poData.rfpDate" name="rfp_date">
+        </div>
+        <div class="form-group1">
+            <label  class="rfp-details" for="fileUpload" style="font-size: 0.9rem; font-weight: 500; color: black;">Upload RFP:</label>
+            <input 
+              type="file" 
+              id="fileUpload" 
+              (change)="onRfpFileSelected($event)" 
+              accept=".pdf" 
+              #fileUpload 
+              style="font-size: 0.85rem; padding: 4px 6px; border: 1px solid #ccc; border-radius: 5px;"
+            />
+            <button  (click)="uploadRfpFile()" style="padding: 6px 12px;font-size: 0.85rem;border: none;border-radius: 5px;
+                background-color: #4f94dd; color: white;cursor: pointer;
+                transition: background-color 0.2s ease, box-shadow 0.2s ease;">Upload</button>
+         <!-- <p *ngIf="poData.rfpFileUploadPath">Saved path: {{ poData.rfpFileUploadPath }}</p> -->
+         <p *ngIf="poData.rfpFileUploadPath">Saved path</p>
+        </div>
+      </div>
+      <div class="form-box">
+          <h3>BID Upload</h3>
+        <div class="form-group1">
+          <label class="bid-details">Bid No.</label>
+          <input type="text" [(ngModel)]="poData.bidNo" name="bid_no">
+        </div>
+        <div class="form-group1">
+          <label class="bid-details">Bid Date</label>
+          <input type="date" [(ngModel)]="poData.bidDate" name="bid_date">
+        </div>
+        <div class="form-group1">
+          <label class="bid-details" for="fileUpload" style="font-size: 0.9rem; font-weight: 500; color: black;">Upload Bid:</label>
+          <input 
+            type="file" id="fileUpload" (change)="onBidFileSelected($event)" 
+            accept=".pdf" 
+            #fileUpload 
+            style="font-size: 0.85rem; padding: 4px 6px; border: 1px solid #ccc; border-radius: 5px;"
+          />
+          <button (click)="uploadBidFile()"
+            style="padding: 6px 12px;font-size: 0.85rem;border: none;border-radius: 5px;background-color: #4f94dd; 
+              color: white;cursor: pointer;transition: background-color 0.2s ease, box-shadow 0.2s ease;"
+          >Upload</button>
+          <div></div>
+<!-- <p *ngIf="poData.bidFileUploadPath">Saved path: {{ poData.bidFileUploadPath }}</p> -->
+<p *ngIf="poData.bidFileUploadPath">Saved Path </p>
+        </div>
+
+
+
+      </div>
+
+      </div>
+      <!-- <div style="margin-left: 50%;"><button type="button" (click)="saveData()" class="btn success">Save</button></div> -->
+      <div style="margin-left: 50%;"><button  class="btn success" (click)="saveData()" >Save</button></div>
+      
+    </div>
+      
+       <!-- <button class="btn success" (click)="saveData()"> Save</button> -->
+    </form>
+
+
+<p></p>
+    
+    <div class="table-section">
+      <div class="grey-container" style="max-width: 98%;">
+     
+      <div class="custom-table-container" style="max-width: 98%;">
+        <h3>Product Details</h3>
+        <div style="overflow: auto; max-height: 500px; max-width: 98%;">
+        <table   *ngIf="selectedOrderType === 'Product' || selectedOrderType === 'Product+AMC'"class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <!-- <th>Item Description</th> -->
+               <th>Product Name</th>
+               <th>Brand</th>
+               <th>Brand Type</th>
+               <th>catalogue Status</th>
+               <th>Selling AS</th>
+               <th>Category Name & Quadrant</th>
+               <th>Model</th>
+               <th>HSN Code</th>
+               
+               
+              <th>Order Quantity</th>
+              <th>Unit</th>
+              <th>Unit Price</th>
+              <th>Tax Bifurcation</th>
+              <th>Price</th>
+              <th *ngIf="isGem">Action</th>
+            </tr>
+          </thead>
+          <tbody [attr.contenteditable]="true">
+            <tr *ngFor="let item of productDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <!-- <td>{{ item.description }}</td> -->
+
+              <td>{{ item.productName }}</td>
+              <td>{{ item.brand }}</td>
+              <td>{{ item.brandType }}</td>
+              <td>{{ item.catalogueStatus }}</td>
+              <td>{{ item.sellingAs }}</td>
+              <td>{{item.categoryNameQaudrant}}</td>
+              <td>{{ item.model }}</td>
+              <td>{{ item.hsnCode }}</td>
+
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unit }}</td>
+              <td>{{ item.unitPrice }}</td>
+              <td>{{ item.taxBifurcation }}NA</td>
+              <td>{{ item.totalPrice }}</td>
+              <td  *ngIf="isGem"> <button (click)="removeRow(i)" class="remove-row-btn">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
+         <button *ngIf="isGem" (click)="addRow()" class="add-row-btn">+ Add Row</button>
+
+         
+         <ng-container *ngIf="selectedOrderType === 'AMC' || selectedOrderType === 'Product+AMC'">
+         <div class="form-group1" *ngFor="let amc of amcDetails; let i = index">
+         <label for="startDate" style="color: black;">Service Start Date</label>
+         <!-- <input type="text" placeholder="Service Start Date" [ngModel]="amc.startDate"  name="startDate{{i}}" readonly> -->
+         <!-- <input type="text" placeholder="Service Start Date" [ngModel]="amc.startDate"  name="startDate{{i}}" > -->
+         <input type="date" [(ngModel)]="amc.startDate" name="startDate{{i}}">
+         <br>
+         <label for="startDate" style="color: black;">Service End Date</label>
+         <!-- <input type="text" placeholder="Service End Date" [ngModel]="amc.endDate" name="endDate{{i}}" readonly> -->
+         <!-- <input type="text" placeholder="Service End Date" [ngModel]="amc.endDate" name="endDate{{i}}" > -->
+        <input type="date" [(ngModel)]="amc.endDate" name="endDate{{i}}"> 
+        </div>
+          <table   *ngIf="selectedOrderType === 'AMC' || selectedOrderType === 'Product+AMC' "class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+               <th>Description</th>
+               <th>Quantity of Product/Equipment</th>
+               <th> Consolidated Unit Price for AMC/CMC</th>
+              
+              <th *ngIf="isGem">Action</th>
+            </tr>
+          </thead>
+          <tbody [attr.contenteditable]="true">
+             <tr *ngFor="let amc of amcDetails; let i = index">
+               <td>{{ i + 1 }}</td>
+      <td>
+        <textarea  (input)="autoResize($event)" [(ngModel)]="amc.descriptionBlock" name="desc{{i}}" placeholder="Enter description" style="width: 186px;"></textarea>
+        <!-- <input type="text" [(ngModel)]="amc.descriptionBlock" name="desc{{i}}" placeholder="Enter description" /> -->
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="amc.quantity" name="qty{{i}}" placeholder="Enter quantity" />
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="amc.costPerEquipment" name="costPerEquipment{{i}}" placeholder="Enter unit price" />
+      </td>
+      <!-- <td>
+        {{ amc.quantity * amc.uniPrice || 0 | number:'1.2-2' }}
+      </td> -->
+      <td>
+        <button (click)="removeAmcRow(i)">Remove</button>
+      </td>
+    </tr>
+
+            
+          </tbody>
+          <button (click)="addRowAmc()" class="add-row-btn">Add rows</button>
+        </table>
+       </ng-container>
+       
+<!-- FMS Table  -->
+<ng-container *ngIf="selectedOrderType === 'FMS' ">
+         <!-- <div  *ngFor="let amc of fmsDetails; let i = index"> -->
+         <div  *ngFor="let fms of fmsDetails; ">
+          
+         <label for="startDate" style="color: black;">Service Start Date</label>
+         <input type="text" placeholder="Service Start Date" [ngModel]="fms.startDate"   readonly>
+
+         <br>
+         <label for="startDate" style="color: black;">Service End Date</label>---
+         <input type="text" placeholder="Service End Date" [ngModel]="fms.endDate"  readonly>
+         </div>
+          <table  class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <!-- <th>Item Description</th> -->
+               <th>ManPower Required </th>
+               <th>Product Category</th>
+               <th>Type of service</th>
+               <th> Product Brand </th>
+               <th>Preventive Maintenance Frequency</th>
+               <th> Number of months service is required</th>
+               <th>Qty of product/equipment</th>
+               <th> Consolidated Price for AMC/CMC </th>
+               
+           
+              <th *ngIf="isGem">Action</th>
+            </tr>
+          </thead>
+          <tbody [attr.contenteditable]="true">
+            <tr *ngFor="let item of fmsDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <!-- <td>{{ item.description }}</td> -->
+
+              <td>{{ item.manpowerRequired }}</td>
+              <td>{{ item.productCategory }}</td>
+              <td>{{ item.typeOfService }}</td>
+              <td>{{item.productBrand}}</td>
+              <td>{{ item.preventiveMaintenanceFrequency }}</td>
+              <td>{{ item.noOfMonthsService }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.consolidatedUnitPrice }}</td>
+            
+
+              <!-- <td>{{ item.catalogueStatus }}</td>
+              <td>{{ item.sellingAs }}</td>
+              <td>{{item.categoryNameQaudrant}}</td>
+              <td>{{ item.model }}</td>
+              <td>{{ item.hsnCode }}</td>
+
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unit }}</td>
+              <td>{{ item.unitPrice }}</td>
+              <td>{{ item.taxBifurcation }}NA</td>
+              <td>{{ item.totalPrice }}</td> -->
+              <td  *ngIf="isGem"> <button (click)="removeRow(i)" class="remove-row-btn">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
+       </ng-container>
+
+       
+       
+       
+       
+       
+        </div>
+        </div>
+      </div>
+      
+      <div *ngIf="selectedOrderType === 'Product'" class="grey-container">
+      <div  *ngIf="selectedOrderType === 'Product'" class="custom-table-container">
+        <h3>Consignee Details</h3>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <th>Consignee</th>
+              <th>Item</th>
+              <th>Lot No.</th>
+              <th>Quantity</th>
+              <th>Delivery Start Date</th>
+              <th>Delivery To Be Completed By</th>
+            </tr>
+          </thead>
+          <tbody [attr.contenteditable]="true">
+            <!-- <tr *ngFor="let consignee of productDetails; let cc of consigneeDetails; let i = index"> -->
+              <tr *ngFor="let row of mergedRows; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ poData.buyerDesg }},{{poData.buyerContact}},
+                {{poData.buyerEmail}},{{poData.buyerGstin}},{{poData.buyerAddress}}
+              </td>
+              <td>{{ row.product.productName }}</td>
+              <td>-</td>
+              <td>{{ row.product.quantity }}</td>
+              <td>{{row.consignee.deliveryStartDate}}</td>
+              <td>{{row.consignee.deliveryEndDate}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- closing of div container for grey bg1 --></div> 
+       
+      
+       <ng-container *ngIf="selectedOrderType === 'AMC' || selectedOrderType === 'Product+AMC'">
+         <!-- <div class="form-group1" *ngFor="let amc of amcConsigneeDetails; let i = index">
+         
+          <label for="startDate" style="color: black;">Service Start Date</label>
+         <input type="date" [(ngModel)]="amc.startDate" name="startDate{{i}}">
+         <br>
+
+         <label for="startDate" style="color: black;">Service End Date</label>
+        <input type="date" [(ngModel)]="amc.endDate" name="endDate{{i}}"> 
+
+
+        </div> -->
+          <table   *ngIf="selectedOrderType === 'AMC' || selectedOrderType === 'Product+AMC' "class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+               <th>Consignee Name & Address</th>
+               <th>Service Description</th>              
+              <th *ngIf="isGem">Action</th>
+            </tr>
+          </thead>
+          <tbody [attr.contenteditable]="true">
+             <tr *ngFor="let amc of amcConsigneeDetails; let i = index">
+               <td>{{ i + 1 }}</td>
+      <td>
+        <textarea  (input)="autoResize($event)" [(ngModel)]="amc.consigneeDetails" name="consigneeDetails{{i}}" placeholder="Enter name & address" style="width: 186px;"></textarea>
+        <!-- <input type="text" [(ngModel)]="amc.consigneeDetails" name="consigneeDetails{{i}}" placeholder="Enter name & address" /> -->
+      </td>
+      <td>
+        <textarea  (input)="autoResize($event)" [(ngModel)]="amc.serviceDetails" name="serviceDetails{{i}}" placeholder="Enter Service Description" style="width: 186px;"></textarea>
+        <!-- <input type="text" [(ngModel)]="amc.serviceDetails" name="serviceDetails{{i}}" placeholder="Enter Service Description" /> -->
+      </td>
+      <td>
+        <button (click)="removeAmcConsigneeRow(i)">Remove</button>
+      </td>
+    </tr>
+
+            
+          </tbody>
+          <button (click)="addRowAmcConsignee()" class="add-row-btn">Add rows</button>
+        </table>
+       </ng-container>
+
+
+
+
+  </div>
+</div>
+

@@ -1,0 +1,308 @@
+/* .container { padding: 20px; }
+.upload-section { margin-bottom: 30px; }
+.form-section { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.form-group { margin-bottom: 15px; }
+input, button { padding: 8px; width: 100%; }
+button { cursor: pointer; background: #007bff; color: white; border: none; }
+
+label{color: black;} */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .upload-section {
+    margin-bottom: 21px;
+    padding: 5px;
+    border: 2px dashed #aaa;
+    border-radius: 8px;
+    background-color: #999696;
+    text-align: center;
+    width: max-content;
+    
+  }
+  
+  .upload-section input[type="file"] {
+    margin: 10px 0;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #1976d2; /* primary blue */
+    color: #afb3b8;
+        cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .form-section form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* gap: 40px; */
+    gap: 6px;
+  }
+  .form-section button{
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #62a1e0; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  /* Box style for each section (like in your image) */
+  .form-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  /* Labels and Inputs */
+  .form-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  /* Updated Form Group for Inline Layout */
+  .form-group1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* Label Styling */
+  /* .form-group label {
+    min-width: 200px; Adjust width as needed
+    margin-right: 16px;
+    font-weight: 500;
+  } */
+
+  /* LABEL for po info */
+  .po-info {
+    min-width: 100px; /* Adjust width as needed */
+    margin-right: 10px;
+    font-weight: 500;
+    /* color: #4CAF50; */
+  }
+/* organization details */
+  .org-details {
+    min-width: 160px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+/* buyer details */
+  .buyer-details {
+    min-width: 116px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+  /* financial approval details */
+  .finance-details {
+    min-width: 180px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+  /* paying authority details */
+  .paying-details {
+    min-width: 123px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+.msme-details {
+    min-width: 123px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+.rfp-details {
+    min-width: 123px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+.bid-details {
+    min-width: 123px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+  
+  
+  /* Input and Textarea Styling */
+  .form-group1 input,
+  .form-group1 textarea {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group1 textarea {
+    resize: vertical;
+  }
+  
+  /* Section Header */
+  .form-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  /* Submit Button */
+  button[type="button"],
+  button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .form-section form {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+
+
+  
+  .loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #4CAF50;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loader-overlay p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .table-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .custom-table-container {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+  }
+  
+  .custom-table-container h3 {
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #ffd0d0;
+    font-size: 14px;
+    color: rgb(40, 7, 110);
+  }
+  
+  .custom-table th {
+    background: #f7b733;
+    color: rgb(40, 7, 110);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+
+
+
+  .form-grid {
+  display: grid;
+    gap: 1px 28px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+.form-grid-address {
+  display: grid;
+    gap: 2px 45px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+
+/* .form-grid label {
+  font-weight: bold;
+  color: #003366;
+} */
+
+.form-grid input,
+.form-grid select,
+.form-grid-district input,
+.form-grid-district select {
+  padding: 8px;
+  border: 1px solid #aad1f1;
+  border-radius: 6px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.form-grid select {
+  padding: 8px;
+  border: 1px solid #aad1f1;
+  border-radius: 6px;
+  background-color: #fff;
+  width: 104%;
+}
+.btn.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+
