@@ -1,0 +1,44 @@
+<!-- view-generate-order-product.component.html -->
+
+<div class="dist-container">
+  <h2 class="h2-header">All Purchase Orders</h2>
+
+  
+  <div *ngFor="let po of poOrders" class="po-card" style="color: black;">
+    <div class="grey-container">
+    <h3>{{ po.referenceNo }}</h3>
+    <p><strong>Distributor:</strong> {{ po.distributorName }}</p>
+    <p><strong>GEM PO:</strong> {{ po.gemPoNumber }}</p>
+    <p><strong>Total:</strong> ₹{{ po.totalAmount }} | GST: {{ po.gst }}% | GST Amount: ₹{{ po.gstAmount }}</p>
+    <p><strong>Grand Total:</strong> ₹{{ po.grandTotal }}</p>
+    <p><strong>Note:</strong> {{ po.note }}</p>
+
+    <h4>Items:</h4>
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Part No</th><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of po.items">
+          <td>{{ item.partNo }}</td><td>{{ item.description }}</td>
+          <td>{{ item.qty }}</td><td>{{ item.unitPrice }}</td>
+          <td>{{ item.totalPrice }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Terms & Conditions:</h4>
+    <ul>
+      <li *ngFor="let term of po.terms">
+        <strong>{{ term.termName }}:</strong> {{ term.termValue }}
+      </li>
+    </ul>
+</div>
+    <hr>
+    <!-- <button (click)="printPo(po.id)">🖨️ Print PDF</button> -->
+    <button (click)="printPo(po.id)">🖨️ Print PDF {{po.id}}1</button>
+  </div>
+  
+</div>
