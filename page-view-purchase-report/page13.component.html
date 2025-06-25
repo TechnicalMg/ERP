@@ -1,0 +1,75 @@
+<div class="dist-container">
+  <h2 class="h2-header">View Purchase Report</h2>
+
+  <div class="grey-container">
+    <div class="filter-section">
+      <div class="form-group">
+        <label for="gemNumber" style="color: black;">Filter by GEM Number</label>
+        <input type="text" id="gemNumber" placeholder="Enter GEM Number">
+      </div>
+
+    <button class="primary-btn app-button">Search</button>
+
+      <div class="form-group">
+        <label for="distributor" style="color: black;">Filter by Distributor</label>
+        <select id="distributor">
+          <option value="">Select Distributor</option>
+          <option value="ABC Distributors">ABC Distributors</option>
+          <option value="XYZ Corp">XYZ Corp</option>
+        </select>
+      </div>
+
+      <button class="reset-btn app-button">Reset</button>
+    </div>
+  </div>
+
+  <p></p>
+  <hr>
+
+  <div class="grey-container">
+    <div class="table-container">
+      <div class="scroll-container">
+        <table>
+          <thead>
+            <tr>
+              <th>GEM Number</th>
+              <th>Description</th>
+              <th>Part No.</th>
+              <th>Model</th>
+              <th>Distributor</th>
+              <th>OEM</th>
+              <th>Item Type</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="color: black;">
+              <td>GEM123456</td>
+              <td>HP EliteBook 840 G8 Laptop</td>
+              <td>HP-840G8</td>
+              <td>840 G8</td>
+              <td>ABC Distributors</td>
+              <td>HP Inc.</td>
+              <td>Hardware</td>
+              <td>10</td>
+              <td>₹55,000</td>
+            </tr>
+            <tr style="color: black;">
+              <td>GEM654321</td>
+              <td>Canon LBP2900 Printer</td>
+              <td>CN-LBP2900</td>
+              <td>LBP2900</td>
+              <td>XYZ Corp</td>
+              <td>Canon</td>
+              <td>Hardware</td>
+              <td>5</td>
+              <td>₹8,500</td>
+            </tr>
+            <!-- Add more static rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
