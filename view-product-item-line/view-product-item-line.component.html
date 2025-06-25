@@ -1,0 +1,66 @@
+<div class="dist-container">
+<h2 class="h2-header">View Purchase Analysis</h2>
+  <div class="grey-container">
+<div class="filter-section">
+  <div class="form-group">
+    <label for="gemNumber" style="color: black;">Filter by GEM Number</label>
+    <input type="text" id="gemNumber" [(ngModel)]="gemNumber" placeholder="Enter GEM Number">
+    <button class="primary-btn" (click)="filterByGemNumber()">Search</button>
+  </div>
+
+  <div class="form-group">
+    <label for="distributor" style="color: black;">Filter by Distributor</label>
+    <select id="distributor" [(ngModel)]="selectedDistributor" (change)="filterByDistributor()">
+      <option value="">Select Distributor</option>
+      <option *ngFor="let dist of distributors" [value]="dist">{{ dist }}</option>
+    </select>
+  </div>
+
+  <button class="reset-btn" (click)="resetFilters()">Reset</button>
+</div>
+</div>
+<p></p>
+<hr>
+
+<div class="grey-container">
+<div class="table-container">
+  <div class="scroll-container">
+  <table>
+    <thead>
+      <tr style="color: black;">
+        <th>GEM Number</th>
+        <th>Description</th>
+        <th>Part No.</th>
+        <th>Model</th>
+        <th>Distributor</th>
+        <th>OEM</th>
+        <th>Item Type</th>
+        <!-- <th>Model</th> -->
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <!-- Add more headers as needed -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of purchaseOrders" style="color: black;">
+        <td>{{ row.gemNo }}</td>
+        <td>{{ row.description }} </td>
+        <td>{{ row.partNo }}</td>
+ <td>{{ row.modelNo }}</td>
+
+        <td>{{ row.distributor }}</td>
+        <td>{{ row.oem }}</td>
+        <td>{{ row.itemType }}</td>
+        <!-- <td>{{ row.brand }}</td> -->
+       
+        <td>{{ row.quantity }}</td>
+        <td>{{ row.unitPrice }}</td>
+        <!-- Add more fields if needed -->
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+</div>
+</div>
