@@ -1,0 +1,75 @@
+<div class="form-container">
+  <h2>Service Engineer Allocation</h2>
+
+  <!-- Dispatch Input -->
+  <div class="form-group">
+    <label for="dispatch">Dispatch</label>
+    <input type="text" id="dispatch" placeholder="Enter dispatch details" />
+  </div>
+
+  <!-- Received PO Dropdown -->
+  <div class="form-group">
+    <label for="receivedPo">Received PO</label>
+    <select id="receivedPo">
+      <option value="">Select PO</option>
+      <option value="PO12345">PO12345</option>
+      <option value="PO67890">PO67890</option>
+    </select>
+  </div>
+
+  <!-- Items Table -->
+  <div class="challan-container">
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Sr No</th>
+          <th>Item</th>
+          <th>Item Sr No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quae, suscipit modi, cum, similique incidunt voluptatem earum minima magnam velit officiis impedit optio. Doloribus eum numquam id atque exercitationem consequatur.</td>
+          <td>A526634955DE588</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Item B</td>
+          <td>B002</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Static Installation Address -->
+  <div class="address-box">
+    <h4>Installation Address</h4>
+    <p>123 Delivery St</p>
+    <p>Business Park</p>
+    <p>Hyderabad, Telangana - 500001</p>
+  </div>
+
+  <!-- Service Engineer Assignment -->
+  <div class="engineer-box">
+    <h4>Service Engineer Assignment</h4>
+    <label for="name">Name</label>
+    <input type="text" placeholder="Engineer Name" />
+    <label for="mobile">Mobile</label>
+    <input type="text" placeholder="Engineer Contact Number" /> 
+    <div class="form-group">
+  <label for="eta">ETA</label>
+  <input
+    type="datetime-local"
+    id="eta"
+    [(ngModel)]="engineerDetails.eta"
+    class="datetime-input"
+    (click)="openDateTimePicker($event)"
+    />
+    </div>
+
+  </div>
+
+  <!-- Save Button -->
+  <button class="app-button">Save</button>
+</div>
