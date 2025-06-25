@@ -1,0 +1,148 @@
+<div class="dist-container">
+  <div class="header">
+    <h2>Product Line Item Analysis</h2>
+  </div>
+
+  <div class="grey-container">
+    <div class="form-group">
+      <label for="gemPoSelect">Select GEM PO Number:</label>
+      <select id="gemPoSelect" style="width: 20%;">
+        <option>PO12345</option>
+        <option>PO67890</option>
+        <option>PO54321</option>
+      </select>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>PO Date</label>
+        <input type="text" value="23-01-2024" readonly />
+      </div>
+      <div class="form-group">
+        <label>Buyer Contact</label>
+        <input type="text" value="John Doe" readonly />
+      </div>
+      <div class="form-group">
+        <label>Buyer Designation</label>
+        <input type="text" value="Procurement Officer" readonly />
+      </div>
+      <div class="form-group">
+        <label>Organization Type</label>
+        <input type="text" value="Government" readonly />
+      </div>
+      <div class="form-group">
+        <label>Organization Name</label>
+        <input type="text" value="Ministry of IT" readonly />
+      </div>
+    </div>
+  </div>
+
+  <div class="grey-container">
+    <div class="custom-table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>S.No.</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody style="color: blue;">
+          <tr>
+            <td><input type="checkbox" checked /></td>
+            <td>1</td>
+            <td>
+              <strong>Laptop</strong><br />
+              Brand: HP | Model: EliteBook<br />
+              Brand Type: OEM | Selling As: OEM<br />
+              Catalogue Status: Approved
+            </td>
+            <td>10</td>
+            <td>55000</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" /></td>
+            <td>2</td>
+            <td>
+              <strong>Printer</strong><br />
+              Brand: Canon | Model: LBP2900<br />
+              Brand Type: OEM | Selling As: Reseller<br />
+              Catalogue Status: Approved
+            </td>
+            <td>5</td>
+            <td>8500</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grey-container">
+    <div class="bifurcation-section">
+      <h3 style="color: blue;">Details for S.No. 1</h3>
+      <div class="scrollable-table custom-table-container">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Item S.No</th>
+              <th>Description</th>
+              <th>Part No.</th>
+              <th>Model No.</th>
+              <th>Distributor</th>
+              <th>OEM</th>
+              <th>Item Type</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody style="color: blue;">
+            <tr>
+              <td>1</td>
+              <td><input type="number" value="1" disabled style="width: 33px;" /></td>
+              <td><textarea style="width: 186px;">Laptop with Intel i7 and 16GB RAM</textarea></td>
+              <td><input value="HP1234" style="width: 100px;" /></td>
+              <td><input value="EliteBook-840" style="width: 100px;" /></td>
+              <td>
+                <select style="min-width: 186px; height: 28px;">
+                  <option>ABC Distributors</option>
+                  <option>XYZ Suppliers</option>
+                </select>
+              </td>
+              <td>
+                <select style="min-width: 186px; height: 28px;">
+                  <option>HP Inc.</option>
+                  <option>Dell India</option>
+                </select>
+              </td>
+              <td>
+                <select style="min-width: 126px; height: 28px;">
+                  <option>Hardware</option>
+                  <option>Software</option>
+                </select>
+              </td>
+              <td><input type="number" value="10" style="width: 35px;" /></td>
+              <td><input type="number" value="55000" style="width: 100px;" /></td>
+              <td><input type="number" value="550000" disabled style="width: 110px;" /></td>
+              <td><button class="delete-btn">🗑️</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="btn primary app-button">Add Row</button>
+    <button class="btn success app-button">Save</button>
+    <label class="toggle-all" style="color: blue;">
+      <input type="checkbox" />
+      Show All
+    </label>
+    <span>Total Rows: 1</span>
+  </div>
+</div>
