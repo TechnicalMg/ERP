@@ -1,0 +1,47 @@
+<div class="background-container">
+  <img src="assets/page-turner.svg" class="background-image" alt="Background Image">
+
+  <div class="foreground-content">
+     
+    <div >
+      <div class="login-box" style="margin-left: 18%;">
+        
+        <div class="left-pane">
+          <h1 style="color:#006db6;; size: 3rem;font-family:'Times New Roman', Times, serif;text-align:center; font-weight: bolder;">Ignitia Edge</h1>
+          <h2>Login</h2>
+          <p class="description">Enjoy confident and effortless access, wherever you are.</p>
+    
+          <form>
+            <input type="email" [(ngModel)]="userEmail" name="userEmail" placeholder="Enter your email" />
+            <input type="password" [(ngModel)]="password" name="password" placeholder="Enter your password" (keydown.enter)="login()" />
+    
+            <div class="options">
+              <!-- <label><input type="checkbox" /> Remember me</label> -->
+              <a (click)="forgotPassword()">Forgot password?</a>
+            </div>
+    
+            <button type="button" (click)="login()">Login</button>
+          </form>
+        </div>
+    
+        <div class="right-pane">
+          
+          <br>
+          <br><br><br>
+          <h2>Streamline your purchasing with Ease and efficiency.
+            <br>
+            <br>
+            <br>Digitize. Organize. Optimize
+            <br> your purchase workflow</h2>
+            <img src="assets/ignitialogofinal.png"alt="Logo"class="logo"width="150"height="250"/>
+          <p>©  Copyright 2025, Ignitia Infotech</p>
+        </div>
+      </div>
+      <!-- <p class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</p> -->
+    </div>
+  </div>
+</div>
+
+
+
+

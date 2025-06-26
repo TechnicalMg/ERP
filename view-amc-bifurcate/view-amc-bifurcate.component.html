@@ -1,0 +1,42 @@
+<div class="dist-container">
+  <h2 class="h2-header">View AMC Analysis</h2>
+
+  <div class="grey-container">
+  <label style="color: black; font-size: 15px;">Select GEM PO:</label>
+  <select [(ngModel)]="selectedGemPo" (change)="fetchAmcData()">
+    <option *ngFor="let po of gemPoList" [value]="po">{{ po }}</option>
+  </select>
+  </div>
+
+<div class="grey-container">
+    <div class="custom-table-container">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Is Own</th>
+        <th>OEM</th>
+        <th>Item Type</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of amcDetails">
+        <td>{{ row.sno }}</td>
+        <td>{{ row.description }}</td>
+        <td>{{ row.startDate }}</td>
+        <td>{{ row.endDate }}</td>
+        <!-- <td>{{ row.isOwn ? 'Yes' : 'No' }}</td> -->
+        <td>{{ row.own? 'Yes' : 'No' }}</td>
+        <td>{{ row.oem }}</td>
+        <td>{{ row.itemType }}</td>
+        <td>{{ row.totalPrice }}</td>
+      </tr>
+    </tbody>
+  </table>
+    </div>
+  </div>
+</div>

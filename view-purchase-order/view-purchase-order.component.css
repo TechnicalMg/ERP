@@ -1,0 +1,626 @@
+/* CSS */
+/* .container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+} */
+
+container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.search-section input[type="text"] {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-section button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 6px;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.details-section .section {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fdfdfd;
+}
+
+.details-section h3 {
+  margin-bottom: 12px;
+  color: #007bff;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field.full {
+  grid-column: span 2;
+}
+
+.form-field label {
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #444;
+}
+
+.form-field input {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Table */
+.table-section {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #fafafa;
+}
+
+.table-section h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.bottom-button {
+  text-align: right;
+}
+
+.bottom-button button {
+  padding: 8px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+/* .search-section {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+} */
+
+.filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.filter-field input {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+
+
+
+
+/* mat csss */
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  background-color: #d0d0d0;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px #e0e0e0;
+}
+
+mat-form-field {
+  width: 200px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.po-detail {
+  margin-top: 20px;
+  background: #f9f9f9;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+
+/* .mdc-data-table__row:last-child>.mat-mdc-cell {
+    border-bottom: none;
+    color: black;
+} */
+/* Container scroll control */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Header row style */
+.mat-header-row {
+  background-color: #f7b733; /* light orange gradient */
+  color: rgb(62, 2, 75);
+  font-weight: bold;
+}
+
+/* Header cells */
+.mat-header-cell {
+  padding: 12px;
+  border-bottom: 2px solid #e0e0e0;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* Body rows */
+.mat-row {
+  transition: background-color 0.2s;
+  cursor: pointer;
+  color: #28a745;
+}
+
+.mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+/* Data cells */
+.mat-cell {
+  padding: 12px;
+  font-size: 13px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #4a148c; /* purple text */
+}
+
+/* For clickable rows */
+.clickable {
+  cursor: pointer;
+}
+
+.mat-header-cell, .mat-cell {
+  color: #8b0e0e !important; /* or any dark color */
+  background-color: white !important;
+}
+
+
+
+
+/* Fix for Angular Material MDC table text color override */
+.mat-header-cell,
+.mat-cell,
+.mat-mdc-header-cell,
+.mat-mdc-cell {
+  color: #212121 !important;         /* Dark readable color */
+  background-color: #ffffff !important; /* Ensure background is white */
+  font-size: 14px;
+  padding: 12px;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: rgb(234 231 231);
+}
+
+
+
+/* Wrapper for all sections */
+.sections-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Each section container (e.g., Header Details, Buyer Details) */
+.section-card {
+  flex: 1 1 calc(50% - 1rem);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(113, 5, 128, 0.15);
+  padding: 1.5rem;
+  min-width: 350px;
+}
+
+/* Section title */
+.section-card h3 {
+  color: #710580;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Fields inside each section */
+.section-card .field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Form fields (Angular Material) */
+.section-card mat-form-field {
+  width: 100%;
+}
+
+/* Form field input text */
+input.mat-input-element {
+  color: #710580 !important;
+}
+
+/* Labels */
+mat-label {
+  color: #555;
+}
+
+/* Zebra-style compact card pairs for better structure */
+.section-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .section-card {
+    flex: 1 1 100%;
+  }
+}
+
+
+/* ======================================layout changes */
+
+/* LABEL for po info */
+  .po-info {
+    min-width: 100px; /* Adjust width as needed */
+    margin-right: 10px;
+    font-weight: 500;
+    /* color: #4CAF50; */
+  }
+/* organization details */
+  .org-details {
+    min-width: 160px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+/* buyer details */
+  .buyer-details {
+    min-width: 116px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+  /* financial approval details */
+  .finance-details {
+    min-width: 180px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+  /* paying authority details */
+  .paying-details {
+    min-width: 123px; /* Adjust width as needed */
+    margin-right: 16px;
+    font-weight: 500;
+  }
+
+
+
+  
+  
+  /* Input and Textarea Styling */
+  .form-group1 input,
+  .form-group1 textarea {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group1 textarea {
+    resize: vertical;
+  }
+  
+  /* Section Header */
+  .form-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  /* Submit Button */
+  button[type="button"],
+  button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .form-section form {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+
+
+  
+  .loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #4CAF50;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loader-overlay p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .table-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .custom-table-container {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+  }
+  
+  .custom-table-container h3 {
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #ffd0d0;
+    font-size: 14px;
+    color: rgb(40, 7, 110);
+  }
+  
+  .custom-table th {
+    background: #f7b733;
+    color: rgb(40, 7, 110);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .custom-table tr:last-child td {
+    border-bottom: none;
+  }
+
+
+
+
+
+  /* Box style for each section (like in your image) */
+  .form-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  /* Labels and Inputs */
+  .form-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  /* Updated Form Group for Inline Layout */
+  .form-group1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+
+
+  /* .form-section form { */
+  .form-section  {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* gap: 40px; */
+    gap: 6px;
+  }
+  .form-section button{
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #62a1e0; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+
+   /* Responsive Design */
+  @media (max-width: 768px) {
+    .form-section form {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  
+
+  .form-grid {
+  display: grid;
+    gap: 1px 28px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+.form-grid-address {
+  display: grid;
+    gap: 2px 45px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+
+/* .form-grid label {
+  font-weight: bold;
+  color: #003366;
+} */
+
+.form-grid input,
+.form-grid select,
+.form-grid-district input,
+.form-grid-district select {
+  padding: 8px;
+  border: 1px solid #aad1f1;
+  border-radius: 6px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.form-grid select {
+  padding: 8px;
+  border: 1px solid #aad1f1;
+  border-radius: 6px;
+  background-color: #fff;
+  width: 104%;
+}
+.form-box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+  }

@@ -1,0 +1,507 @@
+<!-- HTML -->
+<div class="dist-container">
+  <h2 class="h2-header">View Purchase Details</h2>
+ 
+<div class="filter-grid">
+ 
+
+
+<div class="filter-section">
+  <h2 style="color: black;">Search Purchase Orders</h2>
+  <form [formGroup]="filterForm" (ngSubmit)="searchPO()" >
+
+
+    <mat-form-field appearance="outline" style="-webkit-text-fill-color: rgb(113, 5, 128);">
+      <mat-label style="-webkit-text-fill-color: rgb(113, 5, 128);">From Date</mat-label>
+      <!-- <input matInput [matDatepicker]="fromPicker" formControlName="fromDate"  [(ngModel)]="searchFromDate"  (dateChange)="onSearchChangeAll()" style="-webkit-text-fill-color: rgb(113, 5, 128);"> -->
+      <input matInput [matDatepicker]="fromPicker"   [(ngModel)]="searchFromDate"   (dateChange)="onDateChange($event, 'from')" style="-webkit-text-fill-color: rgb(113, 5, 128);">
+      <!-- <input matInput [matDatepicker]="fromPicker" > -->
+      <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fromPicker style="-webkit-text-fill-color: rgb(113, 5, 128);"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="-webkit-text-fill-color: rgb(113, 5, 128);">
+      <mat-label style="-webkit-text-fill-color: rgb(113, 5, 128);">To Date</mat-label>
+      <!-- <input matInput [matDatepicker]="toPicker" formControlName="toDate"  [(ngModel)]="searchToDate"  (dateChange)="onSearchChangeAll()"> -->
+      <input matInput [matDatepicker]="toPicker"   [(ngModel)]="searchToDate"  (dateChange)="onDateChange($event, 'to')">
+      <!-- <input matInput [matDatepicker]="toPicker" > -->
+      <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+      <mat-datepicker #toPicker style="-webkit-text-fill-color: rgb(113, 5, 128);"></mat-datepicker>
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="outline" style="-webkit-text-fill-color: rgb(113, 5, 128);" >
+      <mat-label style="-webkit-text-fill-color: rgb(113, 5, 128);">PO Number</mat-label>
+      <input matInput formControlName="poNumber" [(ngModel)]="searchPoNumber" (input)="onSearchChangeAll()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="-webkit-text-fill-color: rgb(113, 5, 128);" >
+      <mat-label style="-webkit-text-fill-color: rgb(113, 5, 128);"> Product Name</mat-label>
+      <input matInput formControlName="productName" [(ngModel)]="searchProductName" (input)="onSearchChangeAll()">
+    </mat-form-field>
+
+   
+    <mat-form-field appearance="outline" style="-webkit-text-fill-color: rgb(113, 5, 128);" >
+      <mat-label style="-webkit-text-fill-color: rgb(113, 5, 128);">Model</mat-label>
+      <input matInput formControlName="model" [(ngModel)]="searchModel" (input)="onSearchChangeAll()">
+    </mat-form-field>
+
+
+    
+    <mat-form-field appearance="outline" style="-webkit-text-fill-color: rgb(113, 5, 128);" >
+      <mat-label style="-webkit-text-fill-color: rgb(113, 5, 128);">Brand</mat-label>
+      <input matInput formControlName="brand" [(ngModel)]="searchModelBrand" (input)="onSearchChangeAll()">
+    </mat-form-field>
+
+<!--     
+    <mat-form-field appearance="outline" style="-webkit-text-fill-color: rgb(113, 5, 128);" >
+      <mat-label style="-webkit-text-fill-color: rgb(113, 5, 128);">HSN Code</mat-label>
+      <input matInput formControlName="model" [(ngModel)]="searchModel" (input)="onSearchChange()">
+    </mat-form-field> -->
+    
+
+
+<!-- <div class="search-section">
+    <input type="text" [(ngModel)]="searchQuery" (input)="selectedPoNumber = ''" placeholder="Type to search PO numbers..." />
+
+    <input type="text" [(ngModel)]="searchOrganisationMinistry" (input)="searchByOrganisationMinistry()" placeholder="Search by Organisation Ministry..." />
+  
+    <button (click)="searchPo()">🔍Search</button>
+    <div class="dropdown" *ngIf="filteredPoNumbers?.length">
+      <div *ngFor="let num of filteredPoNumbers" class="dropdown-item" (click)="selectedPoNumber = num; searchQuery = num">
+        {{ num }}
+      </div>
+    </div>
+
+  </div> -->
+
+
+
+
+
+    <!-- <button mat-raised-button color="primary" type="submit">Search</button> -->
+  </form>
+</div>
+
+
+<div *ngIf="loading" class="loading">Loading...</div>
+<div class="grey-container" style="max-width: 98%;">
+<div style="overflow: auto; max-height: 500px; max-width: 100%;">
+<table mat-table [dataSource]="purchaseOrders"  *ngIf="purchaseOrders.length >= 0"   style="background-color: white; color: purple; width: 100%;">
+  <ng-container matColumnDef="poNumber">
+    
+    <th mat-header-cell *matHeaderCellDef> PO Number </th>
+    <td mat-cell *matCellDef="let element"> {{ element.poNumber }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="buyerName">
+    <th mat-header-cell *matHeaderCellDef> Buyer </th>
+    <td mat-cell *matCellDef="let element"> {{ element.buyerDesg }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="poDate">
+    <th mat-header-cell *matHeaderCellDef> PO Date </th>
+    <td mat-cell *matCellDef="let element"> {{ element.poDate | date }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="orgType">
+    <th mat-header-cell *matHeaderCellDef> Organisation Type </th>
+    <td mat-cell *matCellDef="let element">{{ element.organisationType }} </td>
+  </ng-container>
+
+<ng-container matColumnDef="orgMinistry">
+    <th mat-header-cell *matHeaderCellDef> Organisation Ministry </th>
+    <td mat-cell *matCellDef="let element"> {{ element.organisationMinistry }} </td>
+  </ng-container>
+
+<ng-container matColumnDef="orgName">
+    <th mat-header-cell *matHeaderCellDef> Organisation Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.organisationName}}</td>
+  </ng-container>
+
+<ng-container matColumnDef="orgOfficeZone">
+    <th mat-header-cell *matHeaderCellDef> Office Zone </th>
+    <td mat-cell *matCellDef="let element"> {{element.orgOfficeZone}} </td>
+  </ng-container>
+
+
+<ng-container matColumnDef="productName">
+    <th mat-header-cell *matHeaderCellDef> Product Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+  </ng-container>
+
+<ng-container matColumnDef="brand">
+    <th mat-header-cell *matHeaderCellDef> Brand </th>
+    <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="brandType">
+    <th mat-header-cell *matHeaderCellDef>Brand Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.brandType}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="catalogueStatus">
+    <th mat-header-cell *matHeaderCellDef>Catalogue Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.catalogueStatus}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="sellingAs">
+    <th mat-header-cell *matHeaderCellDef> Selling As </th>
+    <td mat-cell *matCellDef="let element"> {{element.sellingAs}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="catName">
+    <th mat-header-cell *matHeaderCellDef>Category Name&Quadrant </th>
+    <td mat-cell *matCellDef="let element"> {{element.catName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="model">
+    <th mat-header-cell *matHeaderCellDef> Model </th>
+    <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="hsnCode">
+    <th mat-header-cell *matHeaderCellDef> HSN code </th>
+    <td mat-cell *matCellDef="let element"> {{element.hsnCode}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="orderQuantity">
+    <th mat-header-cell *matHeaderCellDef> Ordered Quantity </th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="unit">
+    <th mat-header-cell *matHeaderCellDef>Unit </th>
+    <td mat-cell *matCellDef="let element"> {{element.unit}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="unitPrice">
+    <th mat-header-cell *matHeaderCellDef> Unit Price(INR) </th>
+    <td mat-cell *matCellDef="let element"> {{element.unitPrice}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="taxBifurcation">
+    <th mat-header-cell *matHeaderCellDef>Tax Bifurcation (INR)</th>
+    <td mat-cell *matCellDef="let element">NA {{element.taxBifurcation}}</td>
+  </ng-container>
+
+   <ng-container matColumnDef="finalPrice">
+    <th mat-header-cell *matHeaderCellDef>  Price(Inclusive ofall Duties and all Duties andTaxes in INR)</th>
+    <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+  </ng-container>
+
+<ng-container matColumnDef="filePath">
+  <th mat-header-cell *matHeaderCellDef> RFP File </th>
+  <td mat-cell *matCellDef="let element">
+    <!-- <a [href]="getFullPdfUrl(element.filePath)" target="_blank" style="color: blue; text-decoration: underline;">
+      View PDF
+    </a> -->
+<a (click)="openFile(element.bidFileUploadPath)" style="cursor: pointer; text-decoration: underline;">
+  {{ element.bidFileUploadPath }}
+</a>
+  </td>
+</ng-container>
+
+
+
+
+  <tr mat-header-row *matHeaderRowDef="['poNumber', 'buyerName', 'poDate','orgType','orgMinistry','orgName'     
+  ,'productName', 'brand', 'brandType', 'catalogueStatus', 'sellingAs'  ,'model' ,'orderQuantity' ,'unit' , 'unitPrice', 'taxBifurcation' , 'finalPrice','filePath', ]"></tr>
+  
+  <tr mat-row *matRowDef="let row; columns: ['poNumber', 'buyerName', 'poDate','orgType','orgMinistry' ,'orgName'    ,'productName' 
+   ,'brand'  ,'brandType'  ,'catalogueStatus'  ,'sellingAs'  ,'model'  ,'orderQuantity'  ,'unit'  ,'unitPrice'  ,'taxBifurcation' 
+    ,'finalPrice' ,'filePath']" (click)="viewDetails(row)" class="clickable"></tr>
+  <!-- <tr mat-header-row *matHeaderRowDef="['poNumber', 'buyerName', 'poDate','orgType','orgMinistry','orgName',     'orgOfficeZone'
+  ,'productName', 'brand', 'brandType', 'catalogueStatus', 'sellingAs' ,'catName' ,'model' ,'orderQuantity' ,'unit' , 'unitPrice', 'taxBifurcation' , 'finalPrice', ]"></tr>
+  
+  <tr mat-row *matRowDef="let row; columns: ['poNumber', 'buyerName', 'poDate','orgType','orgMinistry' ,'orgName'  ,'orgOfficeZone'  ,'productName' 
+   ,'brand'  ,'brandType'  ,'catalogueStatus'  ,'sellingAs'  ,'catName'  ,'model'  ,'orderQuantity'  ,'unit'  ,'unitPrice'  ,'taxBifurcation' 
+    ,'finalPrice' ]" (click)="viewDetails(row)" class="clickable"></tr> -->
+</table>
+</div>
+</div>
+
+</div>
+  <!-- <div class="search-section">
+    <input type="text" [(ngModel)]="searchQuery" (input)="selectedPoNumber = ''" placeholder="Type to search PO numbers..." />
+
+    <input type="text" [(ngModel)]="searchOrganisationMinistry" (input)="searchByOrganisationMinistry()" placeholder="Search by Organisation Ministry..." />
+  
+    <button (click)="searchPo()">🔍Search</button>
+    <div class="dropdown" *ngIf="filteredPoNumbers?.length">
+      <div *ngFor="let num of filteredPoNumbers" class="dropdown-item" (click)="selectedPoNumber = num; searchQuery = num">
+        {{ num }}
+      </div>
+    </div>
+
+  </div> -->
+  
+
+  <!-- Display Details -->
+  <!-- <div *ngIf="poDetails" class="details-section"> -->
+  <!-- <div *ngIf="selectedPoNumber" class="details-section"> -->
+  <div *ngIf="selectedPoNumber" class="form-section">
+    
+    <!-- Section Template -->
+    <!-- <div class="section"> -->
+    <!-- <div class="form-section"> -->
+      <!-- <h3>Header Details</h3> -->
+
+      
+      <!-- <div class="form-grid"> -->
+        <!-- <div class="grey-container"> -->
+            <!-- <div class="form-grid"> -->
+      <div class="form-box">
+        <!-- <div class="form-field"> -->
+        <!-- <div class="form-field"> -->
+        <div class="form-group1">
+          <label class="po-info">PO Numberss</label>
+          <input type="text" [value]="poDetails?.poNumber" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="po-info">PO Date</label>
+          <input type="text" [value]="poDetails?.poDate | date" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="po-info">Bid Number</label>
+          <input type="text" [value]="poDetails?.bidNumber" readonly />
+        </div>
+      </div>
+      
+    <!-- </div> -->
+
+    <div class="form-box">
+      <h3>GEM Details</h3>
+      <!-- <div class="form-grid"> -->
+        <!-- <div class="form-field"> -->
+        <div class="form-group1">
+          <label class="org-details">Organization Type</label>
+          <input type="text" [value]="poDetails?.organisationType" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="org-details">Ministry</label>
+          <input type="text" [value]="poDetails?.organisationMinistry" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="org-details">Department</label>
+          <input type="text" [value]="poDetails?.organisationDepartment" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="org-details">Organization Name</label>
+          <input type="text" [value]="poDetails?.organisationName" readonly />
+        </div>
+      <!-- </div> -->
+    </div>
+
+    <div class="form-box">
+      <h3>Buyer Details</h3>
+      <!-- <div class="form-grid"> -->
+        <div class="form-group1">
+          <label class="buyer-details">Designation</label>
+          <input type="text" [value]="poDetails?.buyerDesg" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">Contact</label>
+          <input type="text" [value]="poDetails?.buyerContact" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">Email</label>
+          <input type="text" [value]="poDetails?.buyerEmail" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">GSTIN</label>
+          <input type="text" [value]="poDetails?.buyerGstin" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="buyer-details">Address</label>
+          <input type="text" [value]="poDetails?.buyerAddress" readonly />
+        </div>
+      <!-- </div> -->
+    </div>
+
+    <div class="form-box">
+      <h3>Financial Approval</h3>
+      <!-- <div class="form-grid"> -->
+        <div class="form-group1">
+          <label class="finance-details">IFD Concurrence</label>
+          <input type="text" [value]="poDetails?.ifdConcurrence" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="finance-details">Admin Approval</label>
+          <input type="text" [value]="poDetails?.desgAdminApproval" readonly />
+        </div>
+        <!-- <div class="form-field full"> -->
+        <div class="form-group1">
+          <label class="finance-details">Final Approval</label>
+          <input type="text" [value]="poDetails?.desgFinalApproval" readonly />
+        </div>
+      <!-- </div> -->
+    </div>
+
+    <div class="form-box">
+      <h3>Paying Authority</h3>
+      <!-- <div class="form-grid"> -->
+        <div class="form-group1">
+          <label class="paying-details">Role</label>
+          <input type="text" [value]="poDetails?.payingRole" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Mode</label>
+          <input type="text" [value]="poDetails?.payingMode" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Designation</label>
+          <input type="text" [value]="poDetails?.payingDesg" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Email</label>
+          <input type="text" [value]="poDetails?.payingEmail" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">GSTIN</label>
+          <input type="text" [value]="poDetails?.payingGstin" readonly />
+        </div>
+        <div class="form-group1">
+          <label class="paying-details">Address</label>
+          <input type="text" [value]="poDetails?.payingAddress" readonly />
+        </div>
+      <!-- </div> -->
+    </div>
+
+    <div class="form-box">
+      <h3>MSME/MSE Details</h3>
+      <!-- <div class="form-grid"> -->
+        <div class="form-group1">
+          <label>MII Status</label>
+          <input type="text" [value]="poDetails?.miiStatus" readonly />
+        </div>
+        <div class="form-group1">
+          <label>MSME Verified</label>
+          <input type="text" [value]="poDetails?.msmeVerified" readonly />
+        </div>
+        <div class="form-group1">
+          <label>MSME Reg. No.</label>
+          <input type="text" [value]="poDetails?.msmeRegistrationNumber" readonly />
+        </div>
+        <div class="form-group1">
+          <label>Social Category</label>
+          <input type="text" [value]="poDetails?.mseSocialCategory" readonly />
+        </div>
+        <div class="form-group1">
+          <label>Gender</label>
+          <input type="text" [value]="poDetails?.mseGender" readonly />
+        </div>
+        <div class="form-group1">
+          <label>GSTIN</label>
+          <input type="text" [value]="poDetails?.mseGstin" readonly />
+        </div>
+      <!-- </div> -->
+    </div>
+<!-- </div>  closing of form grid-->
+<!-- </div>  closing of grey container  -->
+  </div>
+   <div class="grey-container" >
+<div *ngIf="selectedPoNumber" class="table-section"  style="max-width: 98%;">
+
+   
+     <div style="overflow: auto; max-height: 500px; max-width: 100%;">
+      <div class="custom-table-container" style="max-width: 100%;">
+        <h3>Product Details</h3>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <!-- <th>Item Description</th> -->
+               
+               <th>Product Name</th>
+               <th>Brand</th>
+               <th>Brand Type</th>
+               <th>catalogue Status</th>
+               <th>Selling AS</th>
+               <!-- <th>Category Name & Quadrant</th> -->
+               <th>Model</th>
+               <th>HSN Code</th>
+               
+               
+              <th>Order Quantity</th>
+              <th>Unit</th>
+              <th>Unit Price</th>
+              <th>Tax Bifurcation</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody [attr.contenteditable]="true">
+            <!-- <tr *ngFor="let item of productDetails; let i = index"> -->
+            <tr >
+              <!-- <td>{{ i + 1 }}</td> -->
+              <td>{{  1 }}</td>
+             
+              <td>     {{selectedPO.productName}}</td>
+             
+              <td>{{selectedPO.brand}}</td>
+             
+              <td>{{selectedPO.brandType}}</td>
+             
+              <td>{{selectedPO.catalogueStatus}}</td>
+           
+              <td>{{selectedPO.sellingAs}}</td>
+             
+          
+              <td>{{selectedPO.model}}</td>
+              
+              <td>{{selectedPO.hsncode}}</td>
+
+              
+              <td>{{selectedPO.quantity}}</td>
+             
+              <td>{{selectedPO.unit}}</td>
+           
+              <td>{{selectedPO.unitPrice}}</td>
+            
+              <td>NA</td>
+              
+              <td>{{selectedPO.totalPrice}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      </div>
+
+    
+      
+      <div class="grey-container">
+      <div class="custom-table-container">
+        <h3>Consignee Details</h3>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Serial No.</th>
+              <th>Consignee</th>
+              <th>Item</th>
+              <th>Lot No.</th>
+              <th>Quantity</th>
+              <th>Delivery Start Date</th>
+              <th>Delivery To Be Completed By</th>
+            </tr>
+          </thead>
+          <tbody [attr.contenteditable]="true">
+            <tr *ngFor="let consignee of consigneeDetails; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ consignee.consigneeDetails }}</td>
+              <td>{{ consignee.item }}</td>
+              <td>{{ consignee.lotNo }}</td>
+              <td>{{ consignee.quantity }}</td>
+              <td>{{ consignee.deliveryStartDate }}</td>
+              <td>{{ consignee.deliveryEndDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+
+
+    </div>
+  
+</div>

@@ -1,0 +1,17 @@
+<div class="dashboard">
+    <div class="topbar">
+      <h3>Welcome, {{ userName }}</h3>
+      <button (click)="logout()">Logout</button>
+    </div>
+  
+    <div class="sidebar">
+      <ul>
+        <li *ngFor="let menu of menus">{{ menu.menuName }}</li>
+      </ul>
+    </div>
+  
+    <div class="main-content">
+      <p>Select an option from the menu.</p>
+    </div>
+  </div>
+  

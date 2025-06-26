@@ -1,0 +1,231 @@
+<div class="dist-container">
+  <div class="header">
+    <h2>AMC Line Item Analysis</h2>
+  </div>
+ <div class="grey-container">
+  <div class="form-group" >
+    <label for="gemPoSelect">Select GEM PO Number:</label>
+    <select id="gemPoSelect" [(ngModel)]="selectedGemPo" (change)="searchPO() " style="width: 20%;">
+      <option *ngFor="let gem of gemPoList" [value]="gem">{{ gem }}</option>
+    </select>
+  </div>
+
+  <div  *ngIf="isPoSelected" class="form-grid" style="margin-bottom: -18px;">
+    <!-- <div *ngFor="let item of poDetails"> -->
+
+  <div class="form-group" style="margin-bottom: 1px;">
+
+   <label for="">PO Date</label>
+    <input type="text" value="{{ poDetails[0]?.poDate }}" readonly placeholder="23-01-2024..."  />
+  </div>
+  
+    <div class="form-group" style="margin-bottom: 1px;">
+    <label>Buyer Contact</label>
+    <input type="text"  value="{{ poDetails[0]?.buyerContact }}"  readonly placeholder="Enter OEM name" />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 1px;">
+    <label for="">Buyer Designation</label>
+    <input type="text"  value="{{ poDetails[0]?.buyerDesg }}"  readonly placeholder="Organization Department..."  />
+  </div>
+  <div class="form-group" style="margin-bottom: 1px;">
+    <label for="">Organization Type</label>
+    <input type="text"  value="{{ poDetails[0]?.organisationType }}" readonly placeholder="Organization Type..."  />
+    </div>
+
+    <div class="form-group">
+    <label for="">Organization Name</label>
+    <input type="text" value="{{ poDetails[0]?.organisationName }}" readonly placeholder="Organization Ministry..."  />
+    </div>
+
+<div class="form-group">
+    <label for="">Service Start Date</label>
+    <input type="text" value="{{ poDetails[0]?.serviceStartDate }}" readonly placeholder="Organization Ministry..."  />
+    </div>
+    
+    <div class="form-group">
+    <label for="">Service End Date</label>
+    <input type="text" value="{{ poDetails[0]?.serviceEndDate }}" readonly placeholder="Organization Ministry..."  />
+    </div>
+    
+    <!-- </div> -->
+  </div>
+</div>
+<p></p>
+<div class="grey-container">
+   <!-- <h3 style="color: blue;">PO Line Items</h3> -->
+   
+   <!-- <div class="table-card"> -->
+   <div class="custom-table-container">
+    <!-- <table class="styled-table"> -->
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>S.No.</th>
+          <th >Description</th>
+          <th>Quantity</th>
+          <th>
+            Start Date
+          </th>
+          <th>End Date</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody style="color: blue;">
+        <tr *ngFor="let item of poDetails">
+          <td>
+            <input
+              type="checkbox"
+              [checked]="item.sno === selectedSno"
+              [disabled]="showAll || (selectedSno !== null && item.sno !== selectedSno)"
+              (change)="onCheckboxChange(item)"
+            />
+          </td>
+          <td>{{ item.sno }}</td>
+          <td>
+            <strong>{{ item.description }}</strong>
+
+          </td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.serviceStartDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{ item.serviceEndDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{ item.unitPrice }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<p></p>
+
+  <!-- <div class="table-card">
+  <h3>PO Line Items</h3>
+
+  <app-reusable-table
+  [columns]="poLineColumns"
+  [data]="poDetails"
+  [displayActions]="true"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+  (view)="onView($event)"
+>
+   
+    <ng-template let-row let-column="column" #cellTemplate>
+      <ng-container [ngSwitch]="column.key">
+        <ng-container *ngSwitchCase="'select'">
+          <input
+            type="checkbox"
+            [checked]="row.id === selectedSno"
+            [disabled]="showAll || (selectedSno !== null && row.id !== selectedSno)"
+            (change)="onCheckboxChange(row)"
+          />
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          {{ row[column.key] }}
+        </ng-container>
+      </ng-container>
+    </ng-template>
+  </app-reusable-table>
+</div> -->
+
+<!-- 
+<div class="table-card">
+  <h3>PO Line Items</h3>
+
+  <app-reusable-table
+    [columns]="poLineColumns"
+    [data]="poDetails"
+    
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (view)="onView($event)"
+  >
+    <div *ngFor="let row of poDetails">
+      <div *ngFor="let column of poLineColumns">
+        <div *ngIf="column.key === 'select'">
+          <input
+            type="checkbox"
+            [checked]="row.id === selectedSno"
+            [disabled]="showAll || (selectedSno !== null && row.id !== selectedSno)"
+            (change)="onCheckboxChange(row)"
+          />
+          
+        </div>
+        <div *ngIf="column.key !== 'select'">
+          {{ row[column.key] }}
+        </div>
+      </div>
+    </div>
+  </app-reusable-table>
+</div> -->
+<div class="grey-container">
+  <div *ngIf="selectedSno !== null || showAll" class="bifurcation-section">
+    <h3 style="color: blue;">Details for {{ showAll ? 'All Items' : 'S.No. ' + selectedSno }}</h3>
+    <!-- <div class="scrollable-table"> -->
+    <div class="scrollable-table ">
+<div class="custom-table-container">
+      <!-- <table class="styled-table"> -->
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item S.No</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Own</th>
+            <th>OEM</th>
+            <th>Item Type</th>
+            <th>Qty</th>
+            <th>Cost</th>
+            <!-- <th>Total</th> -->
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody style="color: blue;">
+          <tr *ngFor="let row of filteredDetails; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td><input type="number" [(ngModel)]="row.sno" style="width: 33px;"  disabled/></td>
+            <!-- <td><input type="textarea" [(ngModel)]="row.description" style="width: 186px;"/></td> -->
+            <td><textarea  (input)="autoResize($event)" [(ngModel)]="row.description" style="width: 186px;"></textarea></td>
+             <td><input type="date" [(ngModel)]="row.startDate" class="input" /></td>
+          <td><input type="date" [(ngModel)]="row.endDate" class="input" /></td>
+          <td><input type="checkbox" [(ngModel)]="row.isOwn" /></td>
+          <!-- <td><input [(ngModel)]="row.oem" class="input" /></td> -->
+          <td>
+            <select [(ngModel)]="row.oem" style="min-width: 186px; height: 28px;"  [disabled]="row.isOwn">
+                 <option *ngFor="let oem of oems" [value]="oem.name">{{ oem.name }}</option>
+              </select>
+     </td>
+          <td>
+            <select [(ngModel)]="row.itemType" class="input">
+              <option *ngFor="let t of itemTypes" [value]="t">{{ t }}</option>
+            </select>
+          </td>
+          <td><input type="number" [(ngModel)]="row.qty"  class="input" /></td>
+          <td><input type="number" [(ngModel)]="row.unitPrice"  class="input" /></td>
+              <td><button class="delete-btn" (click)="deleteRow(i)">🗑️</button></td>
+              <!-- <td><button class="delete-btn" (click)="showPayLoad()">🗑️</button></td> -->
+          
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  
+  <div class="action-buttons">
+    <!-- <button class="btn primary" (click)="addRow()" [disabled]="!selectedSno">➕ Add Row</button> -->
+    <button class="btn primary" (click)="addRow()" [disabled]="!selectedSno">Add Row</button>
+    <!-- <button class="btn success" (click)="saveData()">💾 Save</button> -->
+    <button class="btn success" (click)="saveData()"> Save</button>
+    <label class="toggle-all" style="color: blue;">
+      <input type="checkbox" [(ngModel)]="showAll" [disabled]="disableShowAll" (change)="toggleShowAll()" />
+      Show All
+    </label>
+    <span>Total Rows: {{ filteredDetails.length }}</span>
+  </div>
+</div>
