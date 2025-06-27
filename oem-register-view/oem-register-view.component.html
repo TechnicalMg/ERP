@@ -1,0 +1,58 @@
+<div class="dist-container">
+  <h2 class="h2-header" >OEM  List</h2>
+
+  <!-- Dropdown filter -->
+   <div class="grey-container">
+  <div class="filter-bar">
+    <label style="color: rgb(2, 2, 33); font-weight: bold;" for="oemFilter">OEM Name:</label>
+    <select id="oemFilter" [(ngModel)]="selectedOemName">
+      <option value="">All</option>
+      <option *ngFor="let oem of oems" [value]="oem.name">{{ oem.name }}</option>
+    </select>
+  </div>
+  
+  <div class="card-slider">
+    <button class="nav left" (click)="scrollLeft()">&lt;</button>
+
+    <div class="card-wrapper" #cardContainer>
+      <div *ngFor="let oem of filteredOems()" class="card">
+        <h3>{{ oem.name }}</h3>
+        <p><b>Contact:</b> {{ oem.phone }}</p>
+        <p><b>Email:</b>  {{ oem.email }}</p>
+        <p><b>Address Line1:</b> {{ oem.address1 }}</p>
+        <p><b>Address Line2:</b>  {{ oem.address2 }}</p>
+        <p><b>Address Line3:</b>  {{ oem.address3 }}</p>
+        <p><b>Contact:</b> {{ oem.phone }} | {{ oem.email }}</p>
+        <p><b>PAN:</b> {{ oem.pan }} | <b>GSTIN:</b> {{ oem.gstin }}</p>
+        <p><b>State:</b> {{ oem.state }}</p>
+        <p><b>District:</b>  {{ oem.district }}</p>
+        <p><b>Pincode:</b> {{ oem.pincode }}</p>
+
+        <h4>Contact Persons</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Email</th>
+              <th>Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of oem.contacts">
+              <td>{{ c.name }}</td>
+              <td>{{ c.designation }}</td>
+              <td>{{ c.email }}</td>
+
+              <td>{{ c.number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <button class="nav right" (click)="scrollRight()">&gt;</button>
+  </div>
+  </div>
+  <br>
+</div>

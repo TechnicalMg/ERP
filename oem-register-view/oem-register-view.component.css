@@ -1,0 +1,110 @@
+.container {
+  background-color: #e7f0fb;
+  padding: 30px 15px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.title {
+  color: #004a99;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.filter-bar {
+  margin-bottom: 20px;
+}
+
+.filter-bar select {
+  padding: 6px 12px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.card-slider {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.card-wrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 90, 160, 0.15);
+  padding: 20px 25px;
+  min-width: 450px;
+  max-width: 450px;
+  color: #003366;
+  flex-shrink: 0;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #004a99;
+  font-size: 22px;
+  border-bottom: 1px solid #cce0f5;
+  padding-bottom: 8px;
+}
+
+.card h4 {
+  margin-top: 20px;
+  color: #0066cc;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+.card b {
+  color: #002244;
+}
+
+.card table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+  background-color: #f9fcff;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.card table th,
+.card table td {
+  border: 1px solid #cce0f5;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.card table th {
+  background-color: #c4cb2e;
+  color: #003366;
+}
+
+.card table tr:nth-child(even) {
+  background-color: #e6e3c9;
+}
+
+.nav {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #004a99;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav:hover {
+  transform: scale(1.2);
+}

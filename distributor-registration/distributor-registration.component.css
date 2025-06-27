@@ -1,0 +1,279 @@
+/* .dist-container {
+ max-width: 816px;
+    margin: 14px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 90, 160, 0.2);
+    font-family: "Segoe UI", sans-serif;
+} */
+
+h2, h3 {
+  text-align: center;
+  color: #004a99;
+}
+
+.form-grid {
+  display: grid;
+    gap: 1px 28px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+.form-grid-address {
+  display: grid;
+    gap: 2px 45px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+.form-grid-address {
+  display: grid;
+    gap: 1px 28px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+.form-grid-district {
+  display: grid;
+    gap: 1px 28px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 20px;
+}
+/* .form-grid label {
+  font-weight: bold;
+  color: #003366;
+} */
+
+.form-grid input,
+.form-grid select,
+.form-grid-district input,
+.form-grid-district select {
+  padding: 8px;
+  border: 1px solid #aad1f1;
+  border-radius: 6px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.form-grid select {
+  padding: 8px;
+  border: 1px solid #aad1f1;
+  border-radius: 6px;
+  background-color: #fff;
+  width: 104%;
+}
+.submit-btn {
+ display: block;
+    margin: 5px auto;
+    background-color: #0066cc;
+    color: white;
+    padding: 4px 13px;
+    border: none;
+    border-radius: 8px;
+    font-weight: lighter;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: 1%;
+}
+
+.submit-btn-add{
+ display: block;
+    margin: 4px auto;
+    background-color: #0066cc;
+    color: white;
+    padding: 6px 7px;
+    border: none;
+    border-radius: 8px;
+    font-weight: lighter;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: 46%;
+}
+.submit-btn-save {
+ display: block;
+    margin: 6px auto;
+    background-color: #0066cc;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: lighter;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: 1%;
+    margin: 11px;
+}
+.submit-btn:hover {
+  background-color: #004a99;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.summary-table th,
+.summary-table td {
+  padding: 10px;
+  border: 1px solid #cce0f5;
+  text-align: center;
+}
+
+.required {
+  color: red;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+
+
+
+/* Header */
+.form-header h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* Form Card Container */
+
+
+
+/* Full-width field (like password rules or submit button) */
+.full-width {
+  grid-column: span 2;
+}
+
+/* Form Group */
+/* .form-group {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* .form-group label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #555;
+   
+} */
+
+.required {
+  color: #e74c3c;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"] {
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* Error Text */
+.error {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  grid-column: span 2;
+}
+
+/* Info Text */
+.form-group p {
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  color: #999;
+}
+
+/* Submit Button */
+.action-btn {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background-color: #3498db;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.action-btn:hover {
+  background-color: #2a80b9;
+}
+
+.change-password-toggle {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+.form-control {
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.submit-btn-add{
+ display: block;
+   
+    background-color: #0066cc;
+    color: white;
+   
+    border: none;
+    border-radius: 8px;
+    font-weight: lighter;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+   
+}
+
+.form-group-contact-person input {
+display: flex; 
+gap: 1px 46px;
+width: 101%;
+
+}
+
+
+.form-group p {
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  color: #999;
+}
+.form-group-contact-person {
+display: flex; 
+gap: 1px 46px;
+
+}
+.form-group-contact-person input {
+display: flex; 
+gap: 1px 46px;
+width: 101%;
+
+}

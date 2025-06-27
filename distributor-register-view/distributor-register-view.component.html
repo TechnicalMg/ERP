@@ -1,0 +1,56 @@
+<div class="dist-container">
+  <h2 class="h2-header" >Distributor List</h2>
+
+  <div class="grey-container">
+  <div class="filter-bar">
+    <label  style="color: rgb(2, 2, 33); font-weight: bold;" for="distributorSelect">Select Distributor:</label>
+    <select id="distributorSelect" [(ngModel)]="selectedDistributor">
+      <option value="">All</option>
+      <option *ngFor="let d of distributors" [value]="d.name">{{ d.name }}</option>
+    </select>
+  </div>
+  
+  <div class="card-slider">
+    <button class="nav left" (click)="scrollLeft()">&lt;</button>
+
+    <div class="card-wrapper" #cardContainer>
+      <div *ngFor="let d of filteredDistributors()" class="card">
+        <h3>{{ d.name }}</h3>
+        <p><b>Contact No:</b> {{ d.phone }} </p>
+        <p><b>Email:</b>  {{ d.email }}</p>
+
+        <!-- <p><b>Location:</b> {{ d.state }}, {{ d.district }}, {{ d.pincode }}</p> -->
+         <!-- <p><b>Address:</b> </p> -->
+         <p><b>Address Line1:</b> {{ d.address1 }}</p>
+         <p><b>Address Line2:</b>  {{ d.address2 }}</p>
+         <p><b>Address Line3:</b> {{ d.address3 }}</p>
+        
+        <p><b>State:</b> {{ d.state }}</p>
+        <p><b>District:</b> {{ d.district }}</p>
+        <p><b>PAN:</b> {{ d.pan }} | <b>GSTIN:</b> {{ d.gstin }}</p>
+        <h4>Contact Persons</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Email</th>
+              <th>Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of d.contacts">
+              <td>{{ c.name }}</td>
+              <td>{{ c.designation }}</td>
+              <td>{{ c.email }}</td>
+              <td>{{ c.number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <button class="nav right" (click)="scrollRight()">&gt;</button>
+  </div>
+  </div>
+</div>
