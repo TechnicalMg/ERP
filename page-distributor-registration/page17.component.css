@@ -1,0 +1,277 @@
+/* Global */
+/* body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+} */
+
+.required {
+  color: red;
+}
+
+.error-msg {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Layout */
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* app-sidebar {
+  width: 250px;
+  background-color: #2d3748;
+  color: white;
+} */
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f6f8;
+}
+
+/* Container */
+.dist-container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Section boxes */
+.grey-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+/* Form grid layout */
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1 1 30%;
+  min-width: 250px;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px 10px;
+  /* border: 1px solid #cbd5e0; */
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-group input[readonly] {
+  background-color: #edf2f7;
+  color: #4a5568;
+}
+
+.contact-person-labels {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 10px; */
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.contact-person-labels label {
+  flex: 1 1 22%;
+  min-width: 180px;
+}
+
+/* Contact Person Row */
+.form-group-contact-person {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.form-group-contact-person label {
+  flex: 1 1 22%;
+  font-weight: 600;
+  color: #333;
+  min-width: 150px;
+}
+
+.form-group-contact-person .form-group {
+  flex: 1 1 22%;
+  min-width: 180px;
+}
+
+
+button.delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(255, 95, 95);
+  border: 2px solid rgb(255, 201, 201);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.delete:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+button.delete:active {
+  transform: scale(0.9);
+}
+
+.bin-top {
+  width: 17px;
+  transform-origin: right;
+  transition: transform 0.3s;
+  z-index: 2;
+}
+
+.bin-bottom {
+  width: 15px;
+  z-index: 2;
+}
+
+.garbage {
+  position: absolute;
+  width: 14px;
+  height: auto;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+button.delete:hover .bin-top {
+  transform: rotate(45deg);
+}
+
+button.delete:hover .garbage {
+  animation: throw 0.4s linear;
+}
+
+
+/* Buttons */
+.btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn.success {
+  /* background: linear-gradient(135deg, #48bb78, #38a169); */
+  color: white;
+}
+
+/* .btn.success:hover {
+  background: linear-gradient(135deg, #38a169, #2f855a);
+} */
+
+.button-end-page {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.button-end-page button {
+  padding: 7px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0066cc;
+  color: white;
+  cursor: pointer;
+}
+
+/* Save button area */
+.save-button-container {
+  margin-left: 33%;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Table Styling */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.summary-table thead {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.summary-table th,
+.summary-table td {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.summary-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  app-sidebar {
+    width: 100%;
+  }
+
+  .content-area {
+    padding: 10px;
+  }
+
+  .form-grid .form-group,
+  .form-group-contact-person .form-group {
+    flex: 1 1 100%;
+  }
+
+  .form-group-contact-person {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button-end-page {
+    text-align: center;
+  }
+}
