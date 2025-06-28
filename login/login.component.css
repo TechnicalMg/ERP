@@ -1,0 +1,259 @@
+/* Root Layout */
+.login-page-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafc;
+}
+
+/* LEFT SECTION — LOGIN FORM */
+.login-form-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 40px;
+  position: relative;
+  background-color: #f9fafc;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+/* Reserved space for future Lottie animation */
+.form-wrapper::before {
+  content: '';
+  display: block;
+  height: 80px;
+}
+
+/* Heading & Subheading */
+.form-wrapper h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.form-wrapper p {
+  font-size: 0.95rem;
+  color: #718096;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 10px;
+  background: #fdfdfd;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+  outline: none;
+}
+
+/* Password Field Icons */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  /* padding-left: 36px; */
+  padding-right: 36px;
+}
+
+.lock-icon {
+  position: absolute;
+  left: 10px;
+  font-size: 1.1rem;
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 1.2rem;
+  color: #667eea;
+  cursor: pointer;
+}
+
+/* Forgot password */
+.form-group a {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  color: #667eea;
+  text-decoration: none;
+}
+
+.form-group a:hover {
+  text-decoration: underline;
+}
+
+/* CAPTCHA Section */
+.captcha-group .captcha-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+}
+
+.captcha-text {
+  font-family: monospace;
+  background-color: #edf2f7;
+  padding: 6px 14px;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #2d3748;
+  box-shadow: inset 0 0 2px #cbd5e0;
+  user-select: none;
+}
+
+.captcha-box button {
+  background-color: #e2e8f0;
+  border: none;
+  padding: 6px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.captcha-box button:hover {
+  background-color: #cbd5e0;
+}
+
+/* LOGIN BUTTON */
+.app-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #e43a15, #ffcc70);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.app-button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(to right, #ffcc70, #e43a15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* ✅ soft shadow */
+}
+
+
+/* RIGHT SECTION — ABOUT */
+.description-section {
+  flex: 1;
+  background: linear-gradient(to bottom right, #e43a15, #ffcc70);
+  color: white;
+  padding: 60px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+.description-wrapper {
+  max-width: 500px;
+}
+
+.description-wrapper p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  text-align: center; /* ✅ Center the text */
+}
+
+
+.description-wrapper ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: center; /* ✅ center list items */
+}
+
+.description-wrapper li {
+  font-size: 1rem;
+  color: white;
+  margin: 8px 0;
+}
+
+
+.logo {
+  width: 170px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .login-page-container {
+    flex-direction: column;
+  }
+
+  .description-section {
+    order: -1;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .form-wrapper {
+    padding: 24px;
+    margin-top: 20px;
+  }
+
+  .description-section {
+    padding: 40px 20px;
+  }
+
+  .description-wrapper p {
+    font-size: 1rem;
+  }
+
+  .logo {
+    width: 80px;
+  }
+}

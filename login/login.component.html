@@ -1,0 +1,75 @@
+<div class="login-page-container">
+  <!-- Left: Login Form -->
+  <div class="login-form-section">
+    <div class="form-wrapper">
+      <h2>Welcome Back</h2>
+      <p>Please sign in to your account</p>
+
+      <!-- Bind form to Angular FormGroup -->
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="username"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Password <span class="required">*</span></label>
+          <div class="password-wrapper">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              (input)="onPasswordInput()"
+              placeholder="Password"
+            />
+            <span
+              class="toggle-icon"
+              (click)="togglePasswordVisibility()"
+              role="button"
+              tabindex="0"
+              aria-label="Toggle password visibility"
+            >
+              {{ showPassword ? '🔓' : '🔒' }}
+            </span>
+          </div>
+          <a href="#">Forgot password?</a>
+        </div>
+        <div class="form-group captcha-group">
+  <div class="captcha-box">
+    <span class="captcha-text">{{ captcha }}</span>
+    <button type="button" (click)="generateCaptcha()">⟳</button>
+  </div>
+  <input
+    type="text"
+    id="captcha"
+    placeholder="Enter CAPTCHA text"
+    formControlName="captchaInput"
+  />
+</div>
+        <button type="submit" class="btn primary app-button">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Right: Company Description -->
+  <div class="description-section">
+    <div class="description-wrapper">
+      <p style="color: black;">
+        Streamline your purchasing with Ease and efficiency.
+      </p>
+      <p style="color: black;">
+        Digitize. Organize. Optimize <br>
+        your purchase workflow
+      </p>
+      <img src="assets/Ignitia.png" alt="Logo" class="logo" />
+      <ul>
+        <li style="color:#000">Ignite.Innovate.Evolve</li>
+      </ul>
+    </div>
+  </div>
+</div>
