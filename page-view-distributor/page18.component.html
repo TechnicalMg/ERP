@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="content-area">
+<div class="dist-container">
+  <h2 class="h2-header">Distributor List</h2>
+
+  <div class="grey-container">
+    <!-- Keep original search dropdown -->
+    <div class="filter-bar">
+      <label style="color: rgb(2, 2, 33); font-weight: bold;" for="distributorSelect">Select Distributor:</label>
+      <select id="distributorSelect" [(ngModel)]="selectDistributor">
+        <option value="">All</option>
+        <option *ngFor="let name of distributorNames">{{ name }}</option>
+      </select>
+    </div>
+
+    <!-- NEW layout: Left List, Right Card -->
+    <div class="card-layout">
+      <!-- Left: Distributor List -->
+      <div class="distributor-list">
+        <ul>
+          <li *ngFor="let d of distributors" 
+              [class.active]="d.name === selectedDistributorCard?.name"
+              (click)="selectDistributor(d)">
+            {{ d.name }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Details Card -->
+      <div class="distributor-card" *ngIf="selectedDistributorCard" [@slideUp]>
+        <h3>{{ selectedDistributorCard.name }}</h3>
+        <p><b>Contact No:</b> {{ selectedDistributorCard.phone }}</p>
+        <p><b>Email:</b> {{ selectedDistributorCard.email }}</p>
+        <p><b>Address Line1:</b> {{ selectedDistributorCard.address1 }}</p>
+        <p><b>Address Line2:</b> {{ selectedDistributorCard.address2 }}</p>
+        <p><b>Address Line3:</b> {{ selectedDistributorCard.address3 }}</p>
+        <p><b>State:</b> {{ selectedDistributorCard.state }}</p>
+        <p><b>District:</b> {{ selectedDistributorCard.district }}</p>
+        <p><b>PAN:</b> {{ selectedDistributorCard.pan }} | <b>GSTIN:</b> {{ selectedDistributorCard.gstin }}</p>
+
+        <h4>Contact Persons</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Email</th>
+              <th>Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of selectedDistributorCard.contacts">
+              <td>{{ c.name }}</td>
+              <td>{{ c.designation }}</td>
+              <td>{{ c.email }}</td>
+              <td>{{ c.number }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  </div>
+</div>

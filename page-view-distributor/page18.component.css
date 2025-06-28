@@ -1,0 +1,185 @@
+.main-layout {
+  display: flex;
+}
+
+.content-area {
+  flex: 1;
+  padding: 1rem;
+  background: var(--content-bg);
+  min-height: 100vh;
+}
+
+/* ========== Global Styles ========== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+h2.h2-header {
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #1a202c;
+  appearance: auto;
+  box-sizing: border-box;
+}
+
+select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* ========== Container Styles ========== */
+.dist-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.grey-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+/* ========== Filter Bar ========== */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* ========== Two-Side Card Layout ========== */
+.card-layout {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+/* -------- Left: Distributor List -------- */
+.distributor-list {
+  flex: 0 0 250px;
+  border-right: 1px solid #ddd;
+  padding-right: 10px;
+}
+
+.distributor-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.distributor-list li {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.distributor-list li:hover {
+  background-color: #edf2ff;
+}
+
+.distributor-list li.active {
+  background-color: #e0e7ff;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* -------- Right: Distributor Card -------- */
+.distributor-card {
+  flex: 1;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ========== Card Content Styling ========== */
+.distributor-card p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.distributor-card h3 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #2b2b2b;
+}
+
+.distributor-card h4 {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #4a4a4a;
+}
+
+/* ========== Table Styling ========== */
+.distributor-card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.distributor-card th,
+.distributor-card td {
+  padding: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+  font-size: 13.5px;
+  color: #222;
+}
+
+.distributor-card th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .card-layout {
+    flex-direction: column;
+  }
+
+  .distributor-list {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .distributor-card {
+    padding: 15px;
+  }
+}
