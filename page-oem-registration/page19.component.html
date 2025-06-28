@@ -1,0 +1,172 @@
+<app-header></app-header>
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="content-area">
+
+    <div class="dist-container">
+  <h2 style="text-align: center;">OEM Registration</h2>
+
+  <div class="grey-container">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>OEM Name<span class="required">*</span></label>
+        <input type="text" placeholder="Enter OEM name" />
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number <span class="required">*</span></label>
+        <input type="tel" placeholder="Enter phone number" maxlength="10" />
+        <p class="error-msg" style="display: none;">Invalid phone number. Only 10 digits allowed.</p>
+      </div>
+
+      <div class="form-group">
+        <label>Email ID<span class="required">*</span></label>
+        <input type="email" placeholder="Enter email" />
+        <p class="error-msg" style="display: none;">Invalid email format.</p>
+      </div>
+
+      <div class="form-group">
+        <label>Address Line 1 <span class="required">*</span></label>
+        <input type="text" placeholder="Address Line 1" />
+      </div>
+
+      <div class="form-group">
+        <label>Address Line 2</label>
+        <input type="text" placeholder="Address Line 2" />
+      </div>
+
+      <div class="form-group">
+        <label>Address Line 3</label>
+        <input type="text" placeholder="Address Line 3" />
+      </div>
+
+      <div class="form-group">
+        <label for="state">State:<span class="required">*</span></label>
+        <select id="state">
+          <option value="">-- Select State --</option>
+          <option>Maharashtra</option>
+          <option>Karnataka</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="districtCorporate">District:<span class="required">*</span></label>
+        <select id="districtCorporate">
+          <option value="">-- Select District --</option>
+          <option>Pune</option>
+          <option>Bangalore</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Pincode <span class="required">*</span></label>
+        <input type="text" placeholder="Enter pincode" maxlength="6" />
+      </div>
+
+      <div class="form-group">
+        <label>PAN <span class="required">*</span></label>
+        <input type="text" placeholder="Enter PAN" maxlength="10" />
+        <p class="error-msg" style="display: none;">Invalid PAN format. Should be e.g. ABCDE1234F</p>
+      </div>
+
+      <div class="form-group">
+        <label>GSTIN <span class="required">*</span></label>
+        <input type="text" placeholder="Enter GSTIN" maxlength="15" />
+        <p class="error-msg" style="display: none;">Invalid GSTIN format.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="text-align: left; margin-top: 20px;">Contact Person Details</h2>
+
+  <div class="form-group-contact-person" style="width: 102%;">
+    <label style="color: black; font-weight: 500;">Contact Person Name</label>
+    <label style="color: black; font-weight: 500;">Designation</label>
+    <label style="color: black; font-weight: 500;">Email</label>
+    <label style="color: black; font-weight: 500;">Contact Number</label>
+  </div>
+
+  <div class="grey-container">
+    <!-- Contact Row -->
+    <div class="form-group-contact-person" style="width: 100%;">
+      <div class="form-group">
+        <input type="text" placeholder="Enter contact person" />
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Enter designation" />
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Enter email" />
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Enter contact number" maxlength="10" />
+      </div>
+      <button class="delete">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 39 7" class="bin-top">
+                <line stroke-width="4" stroke="white" y2="5" x2="39" y1="5"></line>
+                <line stroke-width="3" stroke="white" y2="1.5" x2="26.0357" y1="1.5" x1="12"></line>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 33 39" class="bin-bottom">
+                <mask fill="white" id="path-1-inside-1_8_19">
+                    <path d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"></path>
+                </mask>
+                <path mask="url(#path-1-inside-1_8_19)" fill="white" d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"></path>
+                <path stroke-width="4" stroke="white" d="M12 6L12 29"></path>
+                <path stroke-width="4" stroke="white" d="M21 6V29"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 89 80" class="garbage">
+                <path fill="white" d="M20.5 10.5L37.5 15.5L42.5 11.5L51.5 12.5L68.75 0L72 11.5L79.5 12.5H88.5L87 22L68.75 31.5L75.5066 25L86 26L87 35.5L77.5 48L70.5 49.5L80 50L77.5 71.5L63.5 58.5L53.5 68.5L65.5 70.5L45.5 73L35.5 79.5L28 67L16 63L12 51.5L0 48L16 25L22.5 17L20.5 10.5Z"></path>
+                </svg>
+        </button>
+    </div>
+  </div>
+
+  <div class="button-end-page" style="display: flex; justify-content: flex-end;">
+    <button type="button" class="submit-btn-add">Add Contact Row</button>
+  </div>
+
+  <br />
+  <button class="btn success app-button" style="margin-left: 33%;">Save</button>
+
+  <h3>Registered OEMs</h3>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>OEM Name</th>
+        <th>GSTIN</th>
+        <th>PAN</th>
+        <th>Email ID</th>
+        <th>Contact Person(s)</th>
+        <th>Address</th>
+        <th>Designation(s)</th>
+        <th>Contact No(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>ABC OEM Pvt Ltd</td>
+        <td>27ABCDE1234F1Z5</td>
+        <td>ABCDE1234F</td>
+        <td>abc&#64;example.com</td>
+        <td>
+          <div>John Doe</div>
+          <div>Jane Smith</div>
+        </td>
+        <td>123 Street, Line 2</td>
+        <td>
+          <div>Manager</div>
+          <div>Coordinator</div>
+        </td>
+        <td>
+          <div>9876543210</div>
+          <div>9876500000</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    </div>
+</div>
