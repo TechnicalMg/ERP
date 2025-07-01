@@ -1,0 +1,101 @@
+<!-- ───────── Header ───────── -->
+<header class="page-header">
+  <span class="title"><strong>P</strong>re‑Dispatch <strong>I</strong>nspection</span>
+</header>
+
+<!-- ───────── Selection row ───────── -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <!-- Issued PO drop‑down -->
+    <div class="form-group">
+      <label>Issued PO Number</label>
+      <select [(ngModel)]="selectedIssuedPo"
+              (change)="onPoSelect(selectedIssuedPo)">
+        <option value="" disabled selected>Select PO</option>
+        <option *ngFor="let po of allIssuedPos" [value]="po">{{ po }}</option>
+      </select>
+    </div>
+
+    <!-- Invoice / Challan drop‑down -->
+    <div class="form-group">
+      <label>Invoice / Challan No.</label>
+      <select [(ngModel)]="selectedInvoiceNo"
+              (change)="onInvoiceSelect(selectedInvoiceNo)">
+        <option value="" disabled selected>Select Challan</option>
+        <option *ngFor="let no of invoiceNoLists" [value]="no">{{ no }}</option>
+      </select>
+    </div>
+
+    <!-- Inspection date -->
+    <div class="form-group">
+      <label>Inspection Date</label>
+      <input type="date"
+             [(ngModel)]="inspectionDate"
+             [max]="todayDate">
+    </div>
+
+
+    
+  </div>
+</div>
+
+<!-- ───────── Combined data table ───────── -->
+<div class="content-container">
+  <h3>Combined Item Details</h3>
+
+  <div class="scroll-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th style="min-width:240px">Description</th>
+          <th>Ordered</th>
+          <th>Prev Qty</th>
+          <th>Current Qty</th>
+          <th>Accepted</th>
+          <th>Rejected</th>
+          <th style="min-width:160px">Serial Nos</th>
+          <th>Verified</th>
+          <th style="min-width:140px">Remarks</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- combinedItems comes from your component logic -->
+        <tr *ngFor="let row of combinedItems; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td><textarea rows="2" [(ngModel)]="row.description" readonly></textarea></td>
+          <td>{{ row.qtyOrdered }}</td>
+          <td>{{ row.prevQty }}</td>
+          <td>{{ row.currentQty }}</td>
+
+          <!-- accepted / rejected are editable if you need -->
+          <td><input type="number"
+                     [(ngModel)]="row.acceptedQty"
+                     (input)="onAcceptedQtyChange(row)"></td>
+          <td><input type="number"
+                     [(ngModel)]="row.rejectedQty"
+                     readonly></td>
+
+          <td><textarea rows="2"
+                        [(ngModel)]="row.serialNo"
+                        readonly></textarea></td>
+
+          <td class="center">
+            <input type="checkbox"
+                   [(ngModel)]="row.verified">
+          </td>
+
+          <td><input type="text"
+                     [(ngModel)]="row.remarks"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ───────── Save button ───────── -->
+<div class="save-row">
+  <button class="btn-save" (click)="saveData()">Save</button>
+</div>

@@ -1,0 +1,119 @@
+<!-- Heading -->
+<!-- <h2 class="page-header">Purchase Order Confirmation</h2> -->
+ <header class="page-header">
+    <span><strong>P</strong>urchase</span>
+    <span><strong>O</strong>rder</span>
+    <span><strong>C</strong>onfirmation</span>
+  
+  </header>
+
+<!-- ─── Filters / PO meta ─── -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <div class="form-group1">
+      <label>Distributor</label>
+      <select [(ngModel)]="selectedDistributor" (change)="onDistributorChange()">
+        <option *ngFor="let d of distributors" [value]="d.distributorName">{{d.distributorName}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Received PO Number</label>
+      <select [(ngModel)]="selectedGemPo" (change)="onPoNumberChange()">
+        <option *ngFor="let po of filteredGemPoList" [value]="po.gemPoNumber">{{po.gemPoNumber}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Issued PO Number</label>
+      <select [(ngModel)]="selectedIssuedPo" (change)="onPoSelect(selectedIssuedPo)">
+        <option *ngFor="let po of filteredReferenceNo" [value]="po.referenceNo">{{po.referenceNo}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>PO Generated Date</label>
+      <input type="text" [value]="poGeneratedDate" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery Start After</label>
+      <input type="text" [value]="consigneeDetails[0]?.deliveryStartDate" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery To Be Completed By</label>
+      <input type="text" [value]="consigneeDetails[0]?.deliveryEndDate" readonly>
+    </div>
+
+  </div><!-- /form-grid -->
+</div>
+
+<!-- ─── Items EDD table ─── -->
+<div class="content-container">
+  <h3>Items EDD (Expected Delivery Dates)</h3>
+
+  <div class="scroll-container" style="max-height:500px">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Select <input type="checkbox" [(ngModel)]="selectAllCheckbox" (change)="toggleAllCheckboxes()"></th>
+          <th>Item</th><th>Qty</th><th>EDD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredGemPoItems; let i=index">
+          <td>{{i+1}}</td>
+          <td><input type="checkbox" [(ngModel)]="item.checked"></td>
+          <td>{{item.description}}</td>
+          <td>{{item.qty}}</td>
+          <td><input type="date" [(ngModel)]="item.eddDate"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bulk date set -->
+  <div class="form-grid" style="margin-top:1rem">
+    <div class="form-group1">
+      <label>Set Expected Delivery Date for Items</label>
+      <input type="date" [(ngModel)]="dateForAllItems" (focus)="openCalendar($event)">
+    </div>
+
+    <div class="form-group1">
+      <label>&nbsp;</label>
+      <div>
+        <!-- <button class="btn btn-edit" (click)="setDateForAllItems()">Apply to All</button> -->
+        <button class="btn btn-edit" (click)="setDateForSelectedItems()">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Save -->
+<div style="text-align:center;margin:24px 0">
+  <button class="btn btn-save" (click)="saveData()">Save</button>
+</div>
+
+<!-- ─── Saved entries ─── -->
+<div class="content-container">
+  <h3>Saved Delivery Entries</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S.No</th><th>Item</th><th>Quantity</th><th>Qty Acknowledged</th><th>EDD Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of savedEntries; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{e.itemName}}</td>
+        <td>{{e.quantity}}</td>
+        <td></td>
+        <td>{{e.eddDate | date:'mediumDate'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

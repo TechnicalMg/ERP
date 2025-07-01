@@ -1,0 +1,30 @@
+
+<div class="dist-container" style="color: black;">
+  <h2 class="h2-header">Final Acknowledgement</h2>
+
+<label>Select PO Number:</label>
+<select [(ngModel)]="selectedPoNumber" (change)="onPoSelect(selectedPoNumber)">
+  <option *ngFor="let po of poList" [value]="po.poNumber">{{ po.poNumber }}</option>
+</select>
+
+<div *ngIf="selectedItems.length > 0">
+  <h4>Delivered Items</h4>
+  <ul>
+    <li *ngFor="let item of selectedItems">
+      {{ item.name }} - Qty: {{ item.qty }}
+    </li>
+  </ul>
+
+  <label>Upload Delivery Receipt:</label>
+  <input type="file" multiple (change)="onFileUpload($event)" />
+
+  <div *ngIf="uploadedFiles.length > 0">
+    <h4>Uploaded Documents:</h4>
+    <ul>
+      <li *ngFor="let file of uploadedFiles">{{ file.name }}</li>
+    </ul>
+  </div>
+
+  <button (click)="markAsDelivered()">Mark as Delivered</button>
+</div>
+</div>

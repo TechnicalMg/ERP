@@ -1,0 +1,29 @@
+.file-uploads input {
+  display: block;
+  margin-bottom: 10px;
+}
+ul {
+  margin-bottom: 15px;
+}
+
+
+
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th, td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+label {
+  display: block;
+  margin-top: 10px;
+}
+input[type="date"] {
+  margin-bottom: 10px;
+}

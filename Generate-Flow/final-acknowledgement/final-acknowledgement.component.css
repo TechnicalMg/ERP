@@ -1,0 +1,42 @@
+.file-uploads input {
+  display: block;
+  margin-bottom: 10px;
+}
+ul {
+  margin-bottom: 10px;
+}
+button {
+  margin-top: 15px;
+}
+
+
+
+
+
+
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+select, input[type="file"] {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 15px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

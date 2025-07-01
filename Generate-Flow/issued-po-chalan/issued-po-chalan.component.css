@@ -1,0 +1,19 @@
+/* minimal local helpers – global v1.7 handles the rest */
+.form-grid{
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+}
+.form-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  align-items:center;
+  margin-bottom:1rem;
+}
+
+.row-disabled {
+  opacity: 0.55;            /* grey‑out */
+  pointer-events: none;     /* block clicks, focus, wheel, etc. */
+  user-select: none;        /* block text selection */
+}

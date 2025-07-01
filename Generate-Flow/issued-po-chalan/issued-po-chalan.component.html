@@ -1,0 +1,242 @@
+<!-- Heading -->
+<!-- <h2 class="page-header">Issued PO Delivery – Bill / Invoice Upload</h2> -->
+
+<header class="page-header">
+    <span><strong>I</strong>ssued</span>
+    <span><strong>P</strong>o</span>
+    <span><strong>D</strong>elivery</span>
+    <span><strong></strong>-</span>
+    <span><strong>B</strong>ill</span>
+    <span><strong></strong>/</span>
+    <span><strong>I</strong>nvoice</span>
+    <span><strong>U</strong>pload</span>
+  </header>
+
+<!-- ─── Challan & vehicle info ─── -->
+<div class="content-container">
+  <div class="form-grid">
+    <div class="form-group1">
+      <label>Invoice No.</label>
+      <input type="text" [(ngModel)]="challanNo" placeholder="Enter Challan No…">
+    </div>
+
+    <div class="form-group1">
+      <label>Invoice Date</label>
+      <input type="date" [(ngModel)]="challanDate">
+    </div>
+
+    <div class="form-group1">
+      <label>E-Way Bill No.</label>
+      <input type="text" [(ngModel)]="eWayBillNo" placeholder="Enter Challan No…">
+    </div>
+
+    <div class="form-group1">
+      <label>E-Way Bill Date</label>
+      <input type="date" [(ngModel)]="eWayBillDate">
+    </div>
+
+    <div class="form-group1">
+      <label>Invoice Received Date</label>
+      <input type="date" [(ngModel)]="challanReceivedDate">
+    </div>
+
+    <div class="form-group1">
+      <label>Transporter</label>
+      <input type="text" [(ngModel)]="transporter" placeholder="Transporter Name">
+    </div>
+
+    <div class="form-group1">
+      <label>Vehicle No.</label>
+      <input type="text" [(ngModel)]="vehicleNo" placeholder="Vehicle Number">
+    </div>
+  </div>
+</div>
+
+<!-- ─── PO meta filters ─── -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <div class="form-group1">
+      <label>Distributor</label>
+      <select [(ngModel)]="selectedDistributor" (change)="onDistributorChange()">
+        <option *ngFor="let d of distributors" [value]="d.distributorName">{{d.distributorName}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Received PO Number</label>
+      <select [(ngModel)]="selectedGemPo" (change)="onPoNumberChange()">
+        <option *ngFor="let po of filteredGemPoList" [value]="po.gemPoNumber">{{po.gemPoNumber}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Issued PO Number</label>
+      <select [(ngModel)]="selectedIssuedPo" (change)="onPoSelect(selectedIssuedPo)">
+        <option *ngFor="let po of filteredReferenceNo" [value]="po.referenceNo">{{po.referenceNo}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>PO Generated Date</label>
+      <input type="text" [value]="poGeneratedDate" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery Start Date</label>
+      <input type="text" [value]="consigneeDetails[0]?.deliveryStartDate" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery End Date</label>
+      <input type="text" [value]="consigneeDetails[0]?.deliveryEndDate" readonly>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Items ADD table ─── -->
+<div class="content-container">
+  <h3>Items ADD (Actual Delivery Dates)</h3>
+
+  <div class="scroll-container" style="max-height:500px">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Select <input type="checkbox" [(ngModel)]="selectAllCheckbox" (change)="toggleAllCheckboxes()"></th>
+          <th>Item</th>
+          <th>Qty Ordered</th>
+          <th>Qty Received Till Now</th>
+          <th>Qty Received</th>
+          <th>EDD</th>
+          <th>ADD</th>
+        </tr>
+      </thead>
+      <!-- <tbody>
+        <tr *ngFor="let item of filteredGemPoItems; let i=index">
+          <td>{{i+1}}</td>
+          <td><input type="checkbox" [(ngModel)]="item.checked"></td>
+          <td>{{item.description}}</td>
+          <td>{{item.qty}}</td>
+          <td><input type="number" [(ngModel)]="item.addQty" disabled></td>
+          <td><input type="number" [(ngModel)]="item.addEnteredQty"></td>
+          <td><input type="date" [(ngModel)]="item.eddDate"></td>
+          <td><input type="date" [(ngModel)]="item.addDate"></td>
+        </tr>
+      </tbody> -->
+
+
+      <tbody>
+  <tr *ngFor="let item of filteredGemPoItems; let i = index"
+      [class.row-disabled]="isRowDisabled(item)">
+    <td>{{ i + 1 }}</td>
+
+    <!-- disable the checkbox when EDD is missing -->
+    <td>
+      <input type="checkbox"
+             [(ngModel)]="item.checked"
+             [disabled]="isRowDisabled(item)">
+    </td>
+
+    <td>{{ item.description }}</td>
+    <td>{{ item.qty }}</td>
+
+    <!-- Qty ordered till now is always read‑only -->
+    <td>
+      <input type="number"
+             [(ngModel)]="item.addQty"
+             disabled>
+    </td>
+
+    <!-- Every other control is disabled when EDD is null -->
+    <!-- <td>
+      <input type="number"
+             [(ngModel)]="item.addEnteredQty"
+             [disabled]="isRowDisabled(item)">
+    </td> -->
+    <td>
+  <input
+    type="number"
+    [(ngModel)]="item.addEnteredQty"
+    [disabled]="isRowDisabled(item)"
+    [min]="0"
+    [attr.max]="getRemainingQty(item)"  
+    (ngModelChange)="onAddQtyChange(item)" />
+</td>
+
+    <td>
+      <input type="date"
+             [(ngModel)]="item.eddDate"
+             [disabled]="isRowDisabled(item)">
+    </td>
+
+    <td>
+      <input type="date"
+             [(ngModel)]="item.addDate"
+             [disabled]="isRowDisabled(item)">
+    </td>
+  </tr>
+</tbody>
+    </table>
+  </div>
+
+  <!-- Bulk ADD date -->
+  <div class="form-grid" style="margin-top:1rem">
+    <div class="form-group1">
+      <label>Set Actual Delivery Date for Items</label>
+      <input type="date" [(ngModel)]="dateForAllItems">
+    </div>
+    <div class="form-group1">
+      <label>&nbsp;</label>
+      <div>
+        <!-- <button class="btn btn-edit" (click)="setDateForAllItems()">Apply to All</button> -->
+        <button class="btn btn-edit" (click)="setDateForSelectedItems()">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Bill / Invoice upload ─── -->
+<div class="content-container">
+
+  <div class="form-row">
+    <label>Type</label>
+    <select [(ngModel)]="documentType">
+      <option value="" disabled selected>Select Type</option>
+      <option>Bill</option><option>Invoice</option><option>Bill+Invoice</option>
+    </select>
+  </div>
+
+  <div class="form-row" *ngIf="documentType==='Invoice' || documentType==='Bill+Invoice'">
+    <label>Upload Invoice PDF</label>
+    <input type="file" accept=".pdf" (change)="onFileSelected($event,'invoice')">
+    <div *ngIf="invoiceFile">✔️ {{invoiceFile.name}}</div>
+  </div>
+
+  <div class="form-row" *ngIf="documentType==='Bill' || documentType==='Bill+Invoice'">
+    <label>Upload Bill PDF</label>
+    <input type="file" accept=".pdf" (change)="onFileSelected($event,'bill')">
+    <div *ngIf="billFile">✔️ {{billFile.name}}</div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="btn btn-save"   (click)="saveData()">Save</button>
+    <button class="btn btn-delete" (click)="clearForm()">Clear</button>
+  </div>
+</div>
+
+<!-- ─── Saved entries table ─── -->
+<div class="content-container">
+  <h3>Saved Delivery Entries</h3>
+  <table class="table">
+    <thead>
+      <tr><th>S.No</th><th>Item</th><th>Quantity</th><th>ADD Date</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of savedEntries; let i=index">
+        <td>{{i+1}}</td><td>{{e.itemName}}</td><td>{{e.quantity}}</td>
+        <td>{{e.addDate | date:'mediumDate'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

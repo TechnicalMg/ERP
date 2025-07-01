@@ -1,0 +1,78 @@
+<!-- Heading -->
+<!-- <h2 class="page-header">Update Delivery Type Details</h2> -->
+
+<header class="page-header">
+    <span><strong>U</strong>date</span>
+    <span><strong>D</strong>elivery</span>
+    <span><strong>T</strong>ype</span>
+    <span><strong>D</strong>etails</span>
+  </header>
+<!-- Main form -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <div class="form-group1">
+      <label>Received PO</label>
+      <select [(ngModel)]="selectedPoId" (change)="onPoChange()">
+        <option *ngFor="let po of receivedPoList" [value]="po.id">{{po.gemPo}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Challan</label>
+      <select [(ngModel)]="selectedChallanId">
+        <option *ngFor="let ch of chalanList" [value]="ch.id">{{ch.challanNo}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery Type</label>
+      <select [(ngModel)]="selectedDeliveryType" (change)="onDeliveryTypeChange()">
+        <option value="By-Courier">By‑Courier</option>
+        <option value="By-Transport">By‑Transport</option>
+      </select>
+    </div>
+
+    <!-- ─── Courier fields ─── -->
+    <ng-container *ngIf="selectedDeliveryType==='By-Courier'">
+      <div class="form-group1">
+        <label>POD Number</label>
+        <input type="text" [(ngModel)]="courierPodNumber">
+      </div>
+
+      <div class="form-group1">
+        <label>POD PDF Upload</label>
+        <input type="file" accept=".pdf" (change)="onFileChange($event,'pod')">
+        <p *ngIf="courierPodPdf">✔️ {{courierPodPdf.name}}</p>
+      </div>
+    </ng-container>
+
+    <!-- ─── Transport fields ─── -->
+    <ng-container *ngIf="selectedDeliveryType==='By-Transport'">
+      <div class="form-group1">
+        <label>Vehicle Type</label>
+        <select [(ngModel)]="vehicleType">
+          <option value="Full Vehicle">Full Vehicle</option>
+          <option value="Part Vehicle">Part Vehicle</option>
+        </select>
+      </div>
+
+      <div class="form-group1">
+        <label>Vehicle Number</label>
+        <input type="text" [(ngModel)]="vehicleNumber">
+      </div>
+
+      <div class="form-group1">
+        <label>E‑Way Bill PDF Upload</label>
+        <input type="file" accept=".pdf" (change)="onFileChange($event,'eway')">
+        <p *ngIf="ewayBillPdf">✔️ {{ewayBillPdf.name}}</p>
+      </div>
+    </ng-container>
+
+  </div><!-- /form-grid -->
+
+  <!-- Submit -->
+  <div style="text-align:center;margin-top:1.5rem">
+    <button class="btn btn-save" (click)="submitDeliveryDetails()">Submit</button>
+  </div>
+</div>

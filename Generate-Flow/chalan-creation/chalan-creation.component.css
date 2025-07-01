@@ -1,0 +1,17 @@
+/* local helpers – everything else comes from global v1.7 */
+.form-grid{
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+}
+
+/* stylised title */
+.stylized-title{
+  text-align:center;margin:.5rem 0 1.5rem;font-family:var(--font-primary)
+}
+.stylized-title .big-letter{
+  font-size:48px;color:#000;vertical-align:baseline
+}
+.stylized-title .small-letters{
+  font-size:24px;color:#444;vertical-align:sub
+}

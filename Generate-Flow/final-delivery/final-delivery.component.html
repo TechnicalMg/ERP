@@ -1,0 +1,36 @@
+<div class="dist-container" style="color: black;">
+  <h2 class="h2-header">DeliveryFinal-acknowledgement</h2>
+<label>Select PO Number:</label>
+<select [(ngModel)]="selectedPoNumber" (change)="onPoSelect(selectedPoNumber)">
+  <option *ngFor="let po of poDataList" [value]="po.poNumber">{{ po.poNumber }}</option>
+</select>
+
+<div *ngIf="inspectedItems.length">
+  <label>Select Delivery Method:</label>
+  <select [(ngModel)]="selectedDeliveryMethod">
+    <option *ngFor="let method of deliveryMethods">{{ method }}</option>
+  </select>
+
+  <label>Actual Delivery Date:</label>
+  <input type="date" [(ngModel)]="actualDeliveryDate" />
+
+  <h4>Items Ready for Delivery</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of inspectedItems">
+        <td>{{ item.name }}</td>
+        <td>{{ item.qty }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <label>Upload Delivery Documents:</label>
+  <input type="file" multiple (change)="onDocUpload($event)" />
+</div>
+</div>

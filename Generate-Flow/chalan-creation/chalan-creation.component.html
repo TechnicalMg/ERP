@@ -1,0 +1,157 @@
+
+<!-- <h2 class="page-header">DElivey challan</h2> -->
+
+<header class="page-header">
+    <span><strong>D</strong>elivery</span>
+    <span><strong>C</strong>hallan</span>
+    
+  </header>
+
+<!-- ─── Distributor / PO selectors ─── -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <div class="form-group1">
+      <label>Distributor</label>
+      <select [(ngModel)]="selectedDistributor" (change)="onDistributorChange()">
+        <option *ngFor="let d of distributors" [value]="d">{{d}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Received PO</label>
+      <select [(ngModel)]="selectedReceivedPoId" (change)="onReceivedPoChange()">
+        <option *ngFor="let r of receivedPoList" [value]="r">{{r}}</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Issued PO</label>
+      <select [(ngModel)]="selectedIssuedPoId">
+        <option *ngFor="let i of issuedPoList" [value]="i">{{i}}</option>
+      </select>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── Challan meta ─── -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <div class="form-group1">
+      <label>Challan No.</label>
+      <input type="text" [(ngModel)]="challanNo" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Challan Date</label>
+      <input type="date" [(ngModel)]="challanDate" [max]="todayStr">
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery Type</label>
+      <select [(ngModel)]="deliveryType" (change)="onDeliveryTypeChange()">
+        <option>By-Hand</option><option>By-Courier</option><option>By-Transport</option>
+      </select>
+    </div>
+
+    <!-- By‑Courier extras -->
+    <div class="form-group1" *ngIf="deliveryType==='By-Courier'">
+      <label>Courier Name</label>
+      <input type="text" [(ngModel)]="courierName">
+    </div>
+    <div class="form-group1" *ngIf="deliveryType==='By-Courier'">
+      <label>Courier POD No.</label>
+      <input type="text" [(ngModel)]="courierPOD">
+    </div>
+
+    <!-- By‑Transport extras -->
+    <div class="form-group1" *ngIf="deliveryType==='By-Transport'">
+      <label>Vehicle No.</label>
+      <input type="text" [(ngModel)]="vehicleNo">
+    </div>
+
+    <!-- Ship‑to choice -->
+    <div class="form-group1">
+      <label>Ship To</label>
+      <select [(ngModel)]="shipTo">
+        <option value="same">Same as Consignee Address</option>
+        <option value="custom">Other Address</option>
+      </select>
+    </div>
+
+    <!-- Custom address fields -->
+    <ng-container *ngIf="shipTo==='custom'">
+      <div class="form-group1">
+        <label>Address Line 1<span class="required">*</span></label>
+        <input type="text" [(ngModel)]="address1" placeholder="Address Line 1">
+      </div>
+      <div class="form-group1">
+        <label>Address Line 2</label>
+        <input type="text" [(ngModel)]="address2" placeholder="Address Line 2">
+      </div>
+      <div class="form-group1">
+        <label>Address Line 3</label>
+        <input type="text" [(ngModel)]="address3" placeholder="Address Line 3">
+      </div>
+      <div class="form-group1">
+        <label>State<span class="required">*</span></label>
+        <select [(ngModel)]="selectedState" (ngModelChange)="onStateChange()">
+          <option value="">-- Select State --</option>
+          <option *ngFor="let s of states" [value]="s">{{s}}</option>
+        </select>
+      </div>
+      <div class="form-group1">
+        <label>District<span class="required">*</span></label>
+        <select [(ngModel)]="district">
+          <option value="">-- Select District --</option>
+          <option *ngFor="let d of districts" [value]="d">{{d}}</option>
+        </select>
+      </div>
+      <div class="form-group1">
+        <label>Pincode<span class="required">*</span></label>
+        <input type="text" [(ngModel)]="pincode" maxlength="6" placeholder="Enter pincode">
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+
+<!-- ─── Item list table ─── -->
+<div class="content-container">
+  <h3>Item List</h3>
+  <div class="scroll-container" style="max-height:500px">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th><th>Part No</th><th>Serial No</th><th>Description</th><th>HSN</th>
+          <th>Type</th><th>Qty Ordered</th><th>Qty Supplied</th><th>Qty To Be Supplied</th><th>Packed Box No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let it of items; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{it.partNo}}</td>
+          <td>{{it.serialNo.split('-')[0]}}</td>
+          <td>{{it.itemDescription}}</td>
+          <td><input type="text" [(ngModel)]="it.hsn"></td>
+          <td>
+            <select [(ngModel)]="it.type">
+              <option value="Meter">Meter</option><option value="Pieces">Pieces</option>
+            </select>
+          </td>
+          <td>{{it.qtyOrdered}}</td>
+          <td>{{it.qtyFromStock}}</td>
+          <td><input type="number" [(ngModel)]="it.qtyToBeSupplied"></td>
+          <td><input type="number" [(ngModel)]="it.box"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Save -->
+<div style="text-align:center;margin:24px 0">
+  <button class="btn btn-save" (click)="saveChallan()">Save Challan</button>
+</div>
