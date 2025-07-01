@@ -1,0 +1,98 @@
+<app-header></app-header>
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="content-area">
+
+    <!-- ───────── Header ───────── -->
+<header class="page-header">
+  <span class="title"><strong>P</strong>re‑Dispatch <strong>I</strong>nspection</span>
+</header>
+
+<!-- ───────── Selection row ───────── -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <div class="form-group">
+      <label>Issued PO Number</label>
+      <select>
+        <option selected disabled>Select PO</option>
+        <option>PO-001</option>
+        <option>PO-002</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Invoice / Challan No.</label>
+      <select>
+        <option selected disabled>Select Challan</option>
+        <option>INV-101</option>
+        <option>INV-102</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Inspection Date</label>
+      <input type="date" value="2024-07-10">
+    </div>
+
+  </div>
+</div>
+
+<!-- ───────── Combined data table ───────── -->
+<div class="content-container">
+  <h3>Combined Item Details</h3>
+
+  <div class="scroll-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th style="min-width:240px">Description</th>
+          <th>Ordered</th>
+          <th>Prev Qty</th>
+          <th>Current Qty</th>
+          <th>Accepted</th>
+          <th>Rejected</th>
+          <th style="min-width:160px">Serial Nos</th>
+          <th>Verified</th>
+          <th style="min-width:140px">Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><textarea rows="2" readonly>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio similique quasi consequatur cum doloremque voluptate magnam atque placeat corporis hic.</textarea></td>
+          <td>10</td>
+          <td>4</td>
+          <td>6</td>
+          <td><input type="number" value="6"></td>
+          <td><input type="number" value="0" readonly></td>
+          <td><textarea rows="2" readonly>RT123456, RT123457</textarea></td>
+          <td class="center"><input type="checkbox" checked></td>
+          <td><input type="text" value="Checked OK"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><textarea rows="2" readonly>Network Switch</textarea></td>
+          <td>5</td>
+          <td>2</td>
+          <td>3</td>
+          <td><input type="number" value="3"></td>
+          <td><input type="number" value="0" readonly></td>
+          <td><textarea rows="2" readonly>SW890011, SW890012</textarea></td>
+          <td class="center"><input type="checkbox"></td>
+          <td><input type="text" value=""></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ───────── Save button ───────── -->
+<div class="save-row">
+  <button class="btn-save app-button">Save</button>
+</div>
+
+
+</div>
+</div>
