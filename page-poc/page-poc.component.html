@@ -1,0 +1,147 @@
+<app-header></app-header>
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="content-area">
+
+    <!-- Heading -->
+<header class="page-header">
+  <span><strong>P</strong>urchase</span>
+  <span><strong>O</strong>rder</span>
+  <span><strong>C</strong>onfirmation</span>
+</header>
+
+<!-- Filters / PO meta -->
+<div class="content-container">
+  <div class="form-grid">
+
+    <div class="form-group1">
+      <label>Distributor</label>
+      <select>
+        <option>ABC Distributors</option>
+        <option>XYZ Supplies</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Received PO Number</label>
+      <select>
+        <option>PO12345</option>
+        <option>PO67890</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Issued PO Number</label>
+      <select>
+        <option>REF2024-A1</option>
+        <option>REF2024-B2</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>PO Generated Date</label>
+      <input type="text" value="2024-06-20" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery Start After</label>
+      <input type="text" value="2024-07-01" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery To Be Completed By</label>
+      <input type="text" value="2024-07-15" readonly>
+    </div>
+
+  </div>
+</div>
+
+<!-- Items EDD Table -->
+<div class="content-container">
+  <h3>Items EDD (Expected Delivery Dates)</h3>
+
+  <div class="scroll-container" style="max-height:500px">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Select <input type="checkbox"></th>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>EDD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="checkbox"></td>
+          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ab, laudantium odit iste unde consectetur.</td>
+          <td>10</td>
+          <td><input type="date" value="2024-07-05"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="checkbox"></td>
+          <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, labore! Et quae, placeat ratione dolor itaque enim nesciunt in, corporis rerum nemo, totam sit! Porro totam sunt, soluta nisi a, incidunt odit labore atque, mollitia magnam necessitatibus? Repellendus, aut numquam.</td>
+          <td>5</td>
+          <td><input type="date" value="2024-07-06"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bulk EDD Set -->
+  <div class="form-grid" style="margin-top:1rem">
+    <div class="form-group1">
+      <label>Set Expected Delivery Date for Items</label>
+      <input type="date">
+    </div>
+
+    <div class="form-group1">
+      <label>&nbsp;</label>
+      <div>
+        <button class="btn btn-edit app-button">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Save Button -->
+<div style="text-align:center;margin:24px 0">
+  <button class="btn btn-save app-button">Save</button>
+</div>
+
+<!-- Saved Entries -->
+<div class="content-container">
+  <h3>Saved Delivery Entries</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Qty Acknowledged</th>
+        <th>EDD Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, cupiditate iste! Mollitia voluptatum quibusdam eum.</td>
+        <td>10</td>
+        <td>10</td>
+        <td>July 5, 2024</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Switch</td>
+        <td>5</td>
+        <td>5</td>
+        <td>July 6, 2024</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    </div>
+</div>

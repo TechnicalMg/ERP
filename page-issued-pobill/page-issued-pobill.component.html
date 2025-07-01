@@ -1,0 +1,217 @@
+<app-header></app-header>
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="content-area">
+<header class="page-header">
+  <span><strong>I</strong>ssued</span>
+  <span><strong>P</strong>o</span>
+  <span><strong>D</strong>elivery</span>
+  <span><strong>-</strong></span>
+  <span><strong>B</strong>ill</span>
+  <span><strong>/</strong></span>
+  <span><strong>I</strong>nvoice</span>
+  <span><strong>U</strong>pload</span>
+</header>
+
+<!-- Challan & vehicle info -->
+<div class="content-container">
+  <div class="form-grid">
+    <div class="form-group1">
+      <label>Invoice No.</label>
+      <input type="text" placeholder="Enter Challan No…">
+    </div>
+
+    <div class="form-group1">
+      <label>Invoice Date</label>
+      <input type="date">
+    </div>
+
+    <div class="form-group1">
+      <label>E-Way Bill No.</label>
+      <input type="text" placeholder="Enter Challan No…">
+    </div>
+
+    <div class="form-group1">
+      <label>E-Way Bill Date</label>
+      <input type="date">
+    </div>
+
+    <div class="form-group1">
+      <label>Invoice Received Date</label>
+      <input type="date">
+    </div>
+
+    <div class="form-group1">
+      <label>Transporter</label>
+      <input type="text" placeholder="Transporter Name">
+    </div>
+
+    <div class="form-group1">
+      <label>Vehicle No.</label>
+      <input type="text" placeholder="Vehicle Number">
+    </div>
+  </div>
+</div>
+
+<!-- PO meta filters -->
+<div class="content-container">
+  <div class="form-grid">
+    <div class="form-group1">
+      <label>Distributor</label>
+      <select>
+        <option>ABC Distributors</option>
+        <option>XYZ Traders</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Received PO Number</label>
+      <select>
+        <option>PO-9876</option>
+        <option>PO-5432</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>Issued PO Number</label>
+      <select>
+        <option>REF-2024-A</option>
+        <option>REF-2024-B</option>
+      </select>
+    </div>
+
+    <div class="form-group1">
+      <label>PO Generated Date</label>
+      <input type="text" value="2024-06-10" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery Start Date</label>
+      <input type="text" value="2024-07-01" readonly>
+    </div>
+
+    <div class="form-group1">
+      <label>Delivery End Date</label>
+      <input type="text" value="2024-07-20" readonly>
+    </div>
+  </div>
+</div>
+
+<!-- Items ADD Table -->
+<div class="content-container">
+  <h3>Items ADD (Actual Delivery Dates)</h3>
+
+  <div class="scroll-container" style="max-height:500px">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Select <input type="checkbox"></th>
+          <th>Item</th>
+          <th>Qty Ordered</th>
+          <th>Qty Received Till Now</th>
+          <th>Qty Received</th>
+          <th>EDD</th>
+          <th>ADD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="checkbox"></td>
+          <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, necessitatibus.</td>
+          <td>10</td>
+          <td><input type="number" value="4" disabled></td>
+          <td><input type="number" value="6"></td>
+          <td><input type="date" value="2024-07-05"></td>
+          <td><input type="date" value="2024-07-06"></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="checkbox"></td>
+          <td>Switch</td>
+          <td>5</td>
+          <td><input type="number" value="2" disabled></td>
+          <td><input type="number" value="3"></td>
+          <td><input type="date" value="2024-07-07"></td>
+          <td><input type="date" value="2024-07-08"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bulk ADD date -->
+  <div class="form-grid" style="margin-top:1rem">
+    <div class="form-group1">
+      <label>Set Actual Delivery Date for Items</label>
+      <input type="date">
+    </div>
+    <div class="form-group1">
+      <label>&nbsp;</label>
+      <div>
+        <button class="btn btn-edit app-button">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bill / Invoice Upload -->
+<div class="content-container">
+  <div class="form-row">
+    <label>Type</label>
+    <select>
+      <option disabled selected>Select Type</option>
+      <option>Bill</option>
+      <option>Invoice</option>
+      <option>Bill+Invoice</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label>Upload Invoice PDF</label>
+    <input type="file" accept=".pdf">
+    <div>✔️ invoice.pdf</div>
+  </div>
+
+  <div class="form-row">
+    <label>Upload Bill PDF</label>
+    <input type="file" accept=".pdf">
+    <div>✔️ bill.pdf</div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="btn btn-save app-button">Save</button>
+    <button class="btn btn-delete delete">Clear</button>
+  </div>
+</div>
+
+<!-- Saved Entries -->
+<div class="content-container">
+  <h3>Saved Delivery Entries</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>ADD Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Router</td>
+        <td>6</td>
+        <td>July 6, 2024</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Switch</td>
+        <td>3</td>
+        <td>July 8, 2024</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>

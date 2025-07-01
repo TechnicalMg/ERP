@@ -1,0 +1,134 @@
+/* ────────────────────────────────
+   Layout Styles
+───────────────────────────────── */
+.main-layout {
+  display: flex;
+}
+
+.content-area {
+  flex: 1;
+  padding: 1rem;
+  background: var(--content-bg);
+  min-height: 100vh;
+}
+
+/* ────────────────────────────────
+   Chart Layout
+───────────────────────────────── */
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.chart-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Chart box */
+.chart-box {
+  width: 300px;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Bar chart box wider */
+.chart-box.bar-box {
+  width: 480px;
+  height: 320px;
+}
+
+/* ────────────────────────────────
+   Table Styles
+───────────────────────────────── */
+.due-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #ddd;
+}
+
+.due-table thead tr {
+  background: linear-gradient(to right, #667eea, #764ba2);
+  animation: fadeInHeader 0.5s ease-in-out;
+}
+
+.due-table th,
+.due-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.due-table thead th {
+  color: white;
+  font-weight: 600;
+}
+
+/* ────────────────────────────────
+   Table Row Animations
+───────────────────────────────── */
+@keyframes slideDownRow {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.table-row-animate {
+  animation: slideDownRow 0.5s ease-out both;
+}
+
+/* Optional stagger (for fallback if not using dynamic delay) */
+tbody tr:nth-child(1) { animation-delay: 0.1s; }
+tbody tr:nth-child(2) { animation-delay: 0.2s; }
+tbody tr:nth-child(3) { animation-delay: 0.3s; }
+tbody tr:nth-child(4) { animation-delay: 0.4s; }
+
+/* ────────────────────────────────
+   Blink & After Effects
+───────────────────────────────── */
+@keyframes blinkRed {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: rgba(255, 0, 0, 0.3); }
+}
+
+.blink-red {
+  animation: blinkRed 1s ease-in-out 5;
+  animation-fill-mode: forwards;
+  color: black;
+}
+
+.after-blink {
+  background-color: transparent;
+  color: red;
+  font-weight: bold;
+}
+
+/* ────────────────────────────────
+   General Fade In (Optional)
+───────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.fade-in-table {
+  animation: fadeIn 0.5s ease forwards;
+}

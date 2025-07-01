@@ -1,0 +1,71 @@
+<app-header></app-header>
+<div class="main-layout">
+  <app-sidebar></app-sidebar>
+  <div class="content-area">
+    <div class="chart-container">
+
+      <!-- Pie Charts Row -->
+      <div class="chart-row">
+        <div class="chart-box">
+          <canvas baseChart [data]="chart1Data" [type]="pieChartType" [options]="pieChartOptions"
+                  (chartClick)="onChartClick('chart1', $event)"></canvas>
+        </div>
+        <div class="chart-box">
+          <canvas baseChart [data]="chart2Data" [type]="pieChartType" [options]="pieChartOptions"
+                  (chartClick)="onChartClick('chart2', $event)"></canvas>
+        </div>
+        <div class="chart-box">
+          <canvas baseChart [data]="chart3Data" [type]="pieChartType" [options]="pieChartOptions"
+                  (chartClick)="onChartClick('chart3', $event)"></canvas>
+        </div>
+      </div>
+
+      <!-- Bar Charts Row -->
+      <div class="chart-row">
+        <div class="chart-box bar-box">
+          <canvas baseChart [data]="barChartData" [type]="barChartType" [options]="barChartOptions"
+                  (chartClick)="onChartClick('bar', $event)"></canvas>
+        </div>
+        <div class="chart-box bar-box">
+          <canvas baseChart [data]="ordersBarChartData" [type]="barChartType" [options]="ordersBarChartOptions"
+                  (chartClick)="onChartClick('orders', $event)"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div *ngIf="(selectedChart === 'chart1' || selectedChart === 'chart2') && selectedLabel" class="table-wrapper fade-in-table">
+      <h3>
+        {{ selectedChart === 'chart1' ? 'Inventory Details' : 'Inspection Details' }}
+      </h3>
+      <p style="margin-bottom: 1rem;"><strong>Filtered by:</strong> {{ selectedLabel }}</p>
+
+      <table *ngIf="sortedItems.length > 0; else noData" class="due-table">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Status</th>
+            <th>Due Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sortedItems; let i = index; trackBy: trackByName"
+              class="table-row-animate"
+              [style.animation-delay]="(i * 0.1) + 's'"
+              [ngClass]="{
+                'blink-red': isDueSoon(item.dueDate) && !blinkingItems.has(item.name),
+                'after-blink': blinkingItems.has(item.name)
+              }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.dueDate | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noData>
+        <p style="color: #888; font-style: italic;">No items found for "{{ selectedLabel }}".</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
